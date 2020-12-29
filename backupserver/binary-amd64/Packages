@@ -1,0 +1,980 @@
+Package: grub-common
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 16153
+Depends: libc6 (>= 2.14), libdevmapper1.02.1 (>= 2:1.02.36), libefiboot1 (>= 37), libefivar1 (>= 37), libfreetype6 (>= 2.2.1), libfuse2 (>= 2.8.4-1.4), liblzma5 (>= 5.1.1alpha+20120614), gettext-base
+Suggests: multiboot-doc, grub-emu, xorriso (>= 0.5.6.pl00), desktop-base (>= 4.0.6), console-setup, os-prober (>= 1.33)
+Conflicts: init-select
+Breaks: apport (<< 2.1.1), friendly-recovery (<< 0.2.13), lupin-support (<< 0.55), mdadm (<< 2.6.7-2)
+Replaces: grub-coreboot (<< 2.00-4), grub-efi (<< 1.99-1), grub-efi-amd64 (<< 2.00-4), grub-efi-ia32 (<< 2.00-4), grub-efi-ia64 (<< 2.00-4), grub-ieee1275 (<< 2.00-4), grub-linuxbios (<< 1.96+20080831-1), grub-pc (<< 2.00-4), grub-yeeloong (<< 2.00-4), init-select
+Filename: dists/buster/pbs/binary-amd64/grub-common_2.02+dfsg1-18-pve1_amd64.deb
+Size: 2476908
+MD5sum: 0636ad39898797047f5c9063307f6c95
+SHA1: 80da7e0be7ad820d095a04fa68186924ec839b9f
+SHA256: 88edebfc5eaf8a795f390b887b95500c7fcbf88c224000a1c7186f5d3255b2de
+SHA512: 67e4d4f3eeb23d4c5cdf754b78ef2367f14b09f322514abc6fa95824389c2271c958182de0be8c5ad6fbd34a25028e05ad11c3d79520b3aea83101795350f079
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader (common files)
+ This package contains common files shared by the distinct flavours of GRUB.
+ It is shared between GRUB Legacy and GRUB 2, although a number of files
+ specific to GRUB 2 are here as long as they do not break GRUB Legacy.
+
+Package: grub-efi-amd64-bin
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 6552
+Depends: grub-common (= 2.02+dfsg1-18-pve1)
+Recommends: grub-efi-amd64-signed, efibootmgr
+Replaces: grub-common (<= 1.97~beta2-1), grub-efi-amd64 (<< 1.99-1), grub2 (<< 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-efi-amd64-bin_2.02+dfsg1-18-pve1_amd64.deb
+Size: 665108
+MD5sum: 7a2497e6b2a3f94a5a47727ad4af269a
+SHA1: 8c9f40efd9b55088c702d7748782800fd4e7462d
+SHA256: 769a754cb5b892efeed42f5ad8e4e005da051cfadd6a216516784a9272190bab
+SHA512: fb1873a179901c32bd2a26d5f0a4334fe28b37121ee15dcd896411909660a4f28618817b30ef768cb31185430ae046d8ba863604b846aca0e47e5cb3cf1d2ebd
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (EFI-AMD64 modules)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This package contains GRUB modules that have been built for use with the
+ EFI-AMD64 architecture, as used by Intel Macs (unless a BIOS interface has
+ been activated).  It can be installed in parallel with other flavours, but
+ will not automatically install GRUB as the active boot loader nor
+ automatically update grub.cfg on upgrade unless grub-efi-amd64 is also
+ installed.
+Efi-Vendor: debian
+
+Package: grub-efi-amd64
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 157
+Depends: debconf (>= 0.5) | debconf-2.0, grub-common (= 2.02+dfsg1-18-pve1), grub2-common (= 2.02+dfsg1-18-pve1), grub-efi-amd64-bin (= 2.02+dfsg1-18-pve1), ucf
+Conflicts: elilo, grub, grub-coreboot, grub-efi-ia32, grub-ieee1275, grub-legacy, grub-pc, grub-xen
+Replaces: grub, grub-common (<= 1.97~beta2-1), grub-coreboot, grub-efi-ia32, grub-ieee1275, grub-legacy, grub-pc, grub2 (<< 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-efi-amd64_2.02+dfsg1-18-pve1_amd64.deb
+Size: 39784
+MD5sum: 486d5cb04255d124f5dd0d932de59c33
+SHA1: 54e45e67b069fd25253a557e68915ebe0dfd9851
+SHA256: 0774341df4c1c9a988065d57507703d6755750827dc10aa31f33d23c66fdb043
+SHA512: 0d06bf0f401a284fd313c2c0b6257431ab67a3dc1791b9ef724733ea5f997eeda518741082afeb9d0f27a6565e704e3d84592ec0179a291816e1b6fbb41a78b2
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (EFI-AMD64 version)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This is a dependency package for a version of GRUB that has been built for
+ use with the EFI-AMD64 architecture, as used by Intel Macs (unless a BIOS
+ interface has been activated).  Installing this package indicates that this
+ version of GRUB should be the active boot loader.
+
+Package: grub-efi-ia32-bin
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 4853
+Depends: grub-common (= 2.02+dfsg1-18-pve1)
+Recommends: grub-efi-ia32-signed, efibootmgr
+Replaces: grub-common (<= 1.97~beta2-1), grub-efi, grub-efi-ia32 (<< 1.99-1), grub2 (<< 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-efi-ia32-bin_2.02+dfsg1-18-pve1_amd64.deb
+Size: 631172
+MD5sum: f580f2d430de3214c98b752d7576953b
+SHA1: 0d26520d78f2d797902ef70db2a8cc9b0a927c39
+SHA256: dd3de18c33b8ba2d8214a0451bc53676f29ff0fa9a63666e0c93f01ceda50490
+SHA512: cf20507250058c6c462f684609497b10b121eac37ef35e5a4728943fb40950ec6954bc78a1cb18afcc45f6d503ccd24c14550770f6ef59661053ae68c99f5d80
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (EFI-IA32 modules)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This package contains GRUB modules that have been built for use with the
+ EFI-IA32 architecture, as used by Intel Macs (unless a BIOS interface has
+ been activated).  It can be installed in parallel with other flavours, but
+ will not automatically install GRUB as the active boot loader nor
+ automatically update grub.cfg on upgrade unless grub-efi-ia32 is also
+ installed.
+Efi-Vendor: debian
+
+Package: grub-efi-ia32
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 157
+Depends: debconf (>= 0.5) | debconf-2.0, grub-common (= 2.02+dfsg1-18-pve1), grub2-common (= 2.02+dfsg1-18-pve1), grub-efi-ia32-bin (= 2.02+dfsg1-18-pve1), ucf
+Conflicts: elilo, grub (<< 0.97-54), grub-coreboot, grub-efi-amd64, grub-ieee1275, grub-legacy, grub-pc, grub-xen
+Replaces: grub, grub-common (<= 1.97~beta2-1), grub-coreboot, grub-efi, grub-efi-amd64, grub-ieee1275, grub-legacy, grub-pc, grub2 (<< 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-efi-ia32_2.02+dfsg1-18-pve1_amd64.deb
+Size: 39820
+MD5sum: 9f5c5ce786659b152c503b11fcda2713
+SHA1: 735ea3b09ff486ff360b5a07566cc1c0141f7b5f
+SHA256: 693b3396dd452ec83c63c429ebb9f206d40d2eee83462c21e115834f89dcc79e
+SHA512: ed21a4cf31763770146c41528ff9dfb07112395cf8b9692789bc996d7de6687fa5eb317f92e334166fa388118dae361702c1c5d49ce527195324e9b82ad89ecb
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (EFI-IA32 version)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This is a dependency package for a version of GRUB that has been built for
+ use with the EFI-IA32 architecture, as used by Intel Macs (unless a BIOS
+ interface has been activated).  Installing this package indicates that this
+ version of GRUB should be the active boot loader.
+
+Package: grub-efi
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: oldlibs
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 16
+Depends: grub-common (= 2.02+dfsg1-18-pve1), grub-efi-amd64 (= 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-efi_2.02+dfsg1-18-pve1_amd64.deb
+Size: 2556
+MD5sum: e8bba3496e6362ecb195ff00cdc294ee
+SHA1: a925d397d6a98fd36360d2a5258265ba38ea6c72
+SHA256: ad427de68abad541e9a7e5c88639be7cc95d07f7bf1c314480c4a799f7505d16
+SHA512: b685a1f63080037cefe4a8961480191a7e1fec1dc4beb64c8b2244b57dca67e154bf3beccae7e9c08703c5f6353ff74c09a9b76322ab75b9223d4f751f8f4995
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (dummy package)
+ This is a dummy transitional package that depends on either grub-efi-ia32 or
+ grub-efi-amd64, depending on the architecture.
+
+Package: grub-pc-bin
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 2920
+Depends: libc6 (>= 2.14), libdevmapper1.02.1 (>= 2:1.02.36), grub-common (= 2.02+dfsg1-18-pve1)
+Suggests: desktop-base (>= 4.0.6)
+Replaces: grub-common (<= 1.97~beta2-1), grub-pc (<< 1.99-1), grub2 (<< 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-pc-bin_2.02+dfsg1-18-pve1_amd64.deb
+Size: 900728
+MD5sum: e1b934355306e431880248f142bc7908
+SHA1: e7b0e975bcfd0c6485c38b2efc3e6e92d6e8368d
+SHA256: 0125b3dd04e3113ed7b9d699119a3c3fa0d670da0c30bdb979408f9373d939af
+SHA512: 04d4f3e53e5f8842b8e0c19e95465a430b74c70cc0b0427944b391025043a7e4d10da495e7e3d97afb4820a4b4039576253e3d2c5aefd606b5d0c151e9d97194
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (PC/BIOS modules)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+  - VESA-based graphical mode with background image support and complete 24-bit
+    color set.
+  - Support for extended charsets.  Users can write UTF-8 text to their menu
+    entries.
+ .
+ This package contains GRUB modules that have been built for use with the
+ traditional PC/BIOS architecture.  It can be installed in parallel with
+ other flavours, but will not automatically install GRUB as the active boot
+ loader nor automatically update grub.cfg on upgrade unless grub-pc is also
+ installed.
+
+Package: grub-pc-dbg
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: debug
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 13370
+Depends: grub-common (= 2.02+dfsg1-18-pve1), grub-pc-bin (= 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-pc-dbg_2.02+dfsg1-18-pve1_amd64.deb
+Size: 3165620
+MD5sum: 2cb474db9c04657378d1124cce716b17
+SHA1: 0248f10f613502bdc9bc9680d1e1e42b4491dfdf
+SHA256: 192db7ade4135894e91a7417dc8350f12f6801c36114edcaf08700c725478b2e
+SHA512: 01b584ac708a5ff1ff0cc75d78ab9834c4fca302bdf7dcb3723840fefa5b63964b6a267e72653f7c9995a9f27ab951a2b1847341ca8f9a40a6f3271b677da199
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (PC/BIOS debug files)
+ This package contains debugging files for grub-pc-bin.  You only need these
+ if you are trying to debug GRUB using its GDB stub.
+
+Package: grub-pc
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 532
+Depends: debconf (>= 0.5) | debconf-2.0, grub-common (= 2.02+dfsg1-18-pve1), grub2-common (= 2.02+dfsg1-18-pve1), grub-pc-bin (= 2.02+dfsg1-18-pve1), ucf
+Conflicts: grub (<< 0.97-54), grub-coreboot, grub-efi-amd64, grub-efi-ia32, grub-ieee1275, grub-legacy, grub-xen
+Replaces: grub, grub-common (<= 1.97~beta2-1), grub-coreboot, grub-efi-amd64, grub-efi-ia32, grub-ieee1275, grub-legacy, grub2 (<< 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-pc_2.02+dfsg1-18-pve1_amd64.deb
+Size: 130936
+MD5sum: 188ed2137d0cc90ef4eaff49084505d2
+SHA1: 1d031566462f760d42637789f28623163e8f5d58
+SHA256: 5eae5ea62189e2840e6143bb5937c651181065cb950e1482176240766ffcc15e
+SHA512: 9e01a748ebbbffa5f27d3ebddc23934c4958546cc3366b8e5ea95e83d24bfb278c396ca650f78b4049d58e63ae8ff5bedbf195b0611e3a4877f68d81651c2ca1
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (PC/BIOS version)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+  - VESA-based graphical mode with background image support and complete 24-bit
+    color set.
+  - Support for extended charsets.  Users can write UTF-8 text to their menu
+    entries.
+ .
+ This is a dependency package for a version of GRUB that has been built for
+ use with the traditional PC/BIOS architecture.  Installing this package
+ indicates that this version of GRUB should be the active boot loader.
+
+Package: grub-rescue-pc
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 6287
+Filename: dists/buster/pbs/binary-amd64/grub-rescue-pc_2.02+dfsg1-18-pve1_amd64.deb
+Size: 2359200
+MD5sum: e4afd9347a33aadec434220dc92790af
+SHA1: ca639ea94d2d5a6ffe569847ef56530ce50d2082
+SHA256: 4ffe6106af99f31bce683d9d5c73d412d8db1887cec8f3d28eff047b9294e5a7
+SHA512: db8d7256b4b7329e6cadb5e526916448c82ca08a359696a46b137fc1e5438ba1af85a30fcf215df3b85ebb5e4de0c564d61b90e588b9c3a244957f9dfe7bbc51
+Homepage: https://www.gnu.org/software/grub/
+Description: GRUB bootable rescue images, version 2 (PC/BIOS version)
+ This package contains three GRUB rescue images that have been built for use
+ with the traditional PC/BIOS architecture:
+ .
+  - grub-rescue-floppy.img: floppy image.
+  - grub-rescue-cdrom.iso: El Torito CDROM image.
+  - grub-rescue-usb.img: USB image.
+
+Package: grub-theme-starfield
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 2781
+Depends: grub-common (= 2.02+dfsg1-18-pve1)
+Filename: dists/buster/pbs/binary-amd64/grub-theme-starfield_2.02+dfsg1-18-pve1_amd64.deb
+Size: 2152304
+MD5sum: 8bc394906a38c803bcd240507a3638ff
+SHA1: e589c9a8ef59a1466a28914479b55ade6f3303a6
+SHA256: 1b2992a5bc341f41dcee9903aedf691eff18231dae0cfc1ca941dd3d7c12d73f
+SHA512: 223573473668eb5e4363077148ba7e5e5d5b87cdd4f8bf20de33fe08a8aa4ef4b1c1a99b36710b50600f6140f509c0f4c1b154efc5af43850544614190a22204
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader, version 2 (starfield theme)
+ This is the default theme for GRUB's graphical menu.
+
+Package: grub2-common
+Architecture: amd64
+Version: 2.02+dfsg1-18-pve1
+Multi-Arch: foreign
+Priority: optional
+Section: admin
+Source: grub2
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 1180
+Depends: grub-common (= 2.02+dfsg1-18-pve1), dpkg (>= 1.15.4) | install-info, libc6 (>= 2.14), libdevmapper1.02.1 (>= 2:1.02.36), libefiboot1 (>= 37), libefivar1 (>= 37), liblzma5 (>= 5.1.1alpha+20120614)
+Conflicts: grub-legacy
+Breaks: grub (<< 0.97-54), grub-cloud-amd64 (<< 0.0.4), grub-coreboot (<< 2.02+dfsg1-7), grub-doc (<< 0.97-32), grub-efi-amd64 (<< 2.02+dfsg1-7), grub-efi-arm (<< 2.02+dfsg1-7), grub-efi-arm64 (<< 2.02+dfsg1-7), grub-efi-ia32 (<< 2.02+dfsg1-7), grub-efi-ia64 (<< 2.02+dfsg1-7), grub-ieee1275 (<< 2.02+dfsg1-7), grub-legacy-doc (<< 0.97-59), grub-pc (<< 2.02+dfsg1-7), grub-uboot (<< 2.02+dfsg1-7), grub-xen (<< 2.02+dfsg1-7), grub-yeeloong (<< 2.02+dfsg1-7), shim (<< 0.9+1474479173.6c180c6-0ubuntu1~)
+Replaces: grub, grub-cloud-amd64 (<< 0.0.4), grub-common (<< 1.99-1), grub-coreboot (<< 2.02+dfsg1-7), grub-doc (<< 0.97-32), grub-efi-amd64 (<< 2.02+dfsg1-7), grub-efi-arm (<< 2.02+dfsg1-7), grub-efi-arm64 (<< 2.02+dfsg1-7), grub-efi-ia32 (<< 2.02+dfsg1-7), grub-efi-ia64 (<< 2.02+dfsg1-7), grub-ieee1275 (<< 2.02+dfsg1-7), grub-legacy, grub-legacy-doc (<< 0.97-59), grub-pc (<< 2.02+dfsg1-7), grub-uboot (<< 2.02+dfsg1-7), grub-xen (<< 2.02+dfsg1-7), grub-yeeloong (<< 2.02+dfsg1-7)
+Filename: dists/buster/pbs/binary-amd64/grub2-common_2.02+dfsg1-18-pve1_amd64.deb
+Size: 538100
+MD5sum: 0fefc5014b6c78cc70578058ffe20768
+SHA1: d43fea7bc4c4f10a96e91cbfc6a0ca6aabdc1ffa
+SHA256: d0b9f81ff52e47044b103527d86592783cc72088124d7f7e69a3cd646e376b58
+SHA512: 1fb19d356bf56b7146f26bdcb9e8f78e9a4d50a8e9d47c2c4bfd49684dfd1f957552e7fe8d9c1ada238b37ed57b88016f4dc550b0a331616b26d37bb5335f08f
+Homepage: https://www.gnu.org/software/grub/
+Description: GRand Unified Bootloader (common files for version 2)
+ This package contains common files shared by the distinct flavours of GRUB.
+ The files in this package are specific to GRUB 2, and would break GRUB
+ Legacy if installed on the same system.
+
+Package: ifupdown2
+Architecture: all
+Version: 3.0.0-1+pve3
+Priority: optional
+Section: admin
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 1579
+Provides: ifupdown
+Depends: python3:any, iproute2
+Suggests: isc-dhcp-client, bridge-utils, ethtool, python3-gvgen, python3-mako
+Conflicts: ifupdown
+Breaks: libpve-common-perl (<< 6.0-14)
+Replaces: ifupdown
+Filename: dists/buster/pbs/binary-amd64/ifupdown2_3.0.0-1+pve3_all.deb
+Size: 227048
+MD5sum: 143a4eab344b51be82abee3ec64ea4cb
+SHA1: ab2fdbee5c251a18cbae7f49b375aaa7f894abe0
+SHA256: d6dac1f2abdca6785b492a47f5a6f2dd6ed040b75012ff4c55fbbf98639d013b
+SHA512: fba805b13e75f9413c888703c36cf9557c26f0bcf0a693d111a60a95f97385055602a1b1867cebe07626bd9ab5130176184c8b7a679de1801e6015391e852899
+Homepage: https://github.com/cumulusnetworks/ifupdown2
+Description: Network Interface Management tool similar to ifupdown
+ ifupdown2 is ifupdown re-written in Python. It replaces ifupdown and provides
+ the same user interface as ifupdown for network interface configuration.
+ Like ifupdown, ifupdown2 is a high level tool to configure (or, respectively
+ deconfigure) network interfaces based on interface definitions in
+ /etc/network/interfaces. It is capable of detecting network interface
+ dependencies and comes with several new features which are available as
+ new command options to ifup/ifdown/ifquery commands. It also comes with a new
+ command ifreload to reload interface configuration with minimum
+ disruption. Most commands are also capable of input and output in JSON format.
+ It is backward compatible with ifupdown /etc/network/interfaces format and
+ supports newer simplified format. It also supports interface templates with
+ python-mako for large scale interface deployments. See
+ /usr/share/doc/ifupdown2/README.rst for details about ifupdown2. Examples
+ are available under /usr/share/doc/ifupdown2/examples.
+
+Package: libjs-extjs
+Architecture: all
+Version: 6.0.1-10
+Priority: optional
+Section: web
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 20275
+Filename: dists/buster/pbs/binary-amd64/libjs-extjs_6.0.1-10_all.deb
+Size: 2504600
+MD5sum: d2514d2e0df975f16148f10f71e404b5
+SHA1: 7d9007048262fadd6055b00ca014c4902911617b
+SHA256: 0abd277bcf468c23bae31b2ee66bb0535752acc9efa8afba93ad5f7149c12ae2
+SHA512: 5abf1f3ac235d0e5524a77231cf44773d77d2ed190971a9f03398acdb6acaf2d3dd1e8a93596c3e188d58e2d473dcada3014d77f803c7c7aab941408a78fd4de
+Homepage: https://www.sencha.com/
+Description: cross-browser JavaScript library
+ Ext JS is a cross-browser JavaScript library for building rich internet
+ applications.
+
+Package: libnvpair1linux
+Architecture: amd64
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/libs
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 171
+Depends: libc6 (>= 2.4), libudev1 (>= 183), libuuid1 (>= 2.16), zlib1g (>= 1:1.1.4)
+Breaks: libnvpair1
+Replaces: libnvpair1
+Filename: dists/buster/pbs/binary-amd64/libnvpair1linux_0.8.4-pve2_amd64.deb
+Size: 52180
+MD5sum: 66bfc3c61b9d0c7fe4a3db297accc99e
+SHA1: 50b26b926ce333815475528ccdac26d821fbf711
+SHA256: f23b3563620fa5d3be33b3243b9f26d9f1a71a6ce2e02c5b5c9d2e09d638e5e3
+SHA512: af23bc6ac7537bdcd4c25ed0bc85b9d65f520f603e736645e4c8be7b1e23b4b8bcb59665263374ce57add18bcd24b09ec8bff812369c78f70027047a4ab9022f
+Homepage: https://www.zfsonlinux.org/
+Description: Solaris name-value library for Linux
+ This library provides routines for packing and unpacking nv pairs for
+ transporting data across process boundaries, transporting between
+ kernel and userland, and possibly saving onto disk files.
+
+Package: libuutil1linux
+Architecture: amd64
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/libs
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 140
+Depends: libc6 (>= 2.14), libudev1 (>= 183), libuuid1 (>= 2.16), zlib1g (>= 1:1.1.4)
+Breaks: libuutil1
+Replaces: libuutil1
+Filename: dists/buster/pbs/binary-amd64/libuutil1linux_0.8.4-pve2_amd64.deb
+Size: 45280
+MD5sum: d25e90aece83816f938037adcd700539
+SHA1: e31078dbf6ddedfa9eafba9fa87cb9912affb189
+SHA256: 40290c45fee603a45e6c191295bd62f9dbf0e5ffedd5e0b4d8a11fbba7db97dc
+SHA512: 38734144d6173d5430e2a7acd62c45615fddd97b6ce597bd59baa21f18c77f697f08d743e34826eab48dd1a09418ee503b0d47d389dde2c2a0e0aa636fef1273
+Homepage: https://www.zfsonlinux.org/
+Description: Solaris userland utility library for Linux
+ This library provides a variety of glue functions for ZFS on Linux:
+  * libspl: The Solaris Porting Layer userland library, which provides APIs
+    that make it possible to run Solaris user code in a Linux environment
+    with relatively minimal modification.
+  * libavl: The Adelson-Velskii Landis balanced binary tree manipulation
+    library.
+  * libefi: The Extensible Firmware Interface library for GUID disk
+    partitioning.
+  * libshare: NFS, SMB, and iSCSI service integration for ZFS.
+
+Package: libzfs2linux
+Architecture: amd64
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/libs
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 592
+Depends: libblkid1 (>= 2.16), libc6 (>= 2.28), libnvpair1linux (>= 0.8.4), libssl1.1 (>= 1.1.0), libudev1 (>= 183), libuuid1 (>= 2.16), libuutil1linux (>= 0.8.4), zlib1g (>= 1:1.1.4)
+Breaks: libzfs2
+Replaces: libzfs2
+Filename: dists/buster/pbs/binary-amd64/libzfs2linux_0.8.4-pve2_amd64.deb
+Size: 216864
+MD5sum: 62223e1265187961ee491c18c6525416
+SHA1: 87e6f2f89541f8d6d6d5b6689593d649059a1c9b
+SHA256: c062e1308a14862ef88478ea5e547f0843d4e0a1c7aa41d8e1b0846fd32a3ad6
+SHA512: d1eb6bfddd9c7823523993afcb2a65c38a1132daef5e578d64702123dde4cceda3c34dd977a7d781044be2b30ec21e326188648f43a73a46ce5ef1072b67bbb4
+Homepage: https://www.zfsonlinux.org/
+Description: OpenZFS filesystem library for Linux
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ The OpenZFS library provides support for managing OpenZFS filesystems.
+
+Package: libzpool2linux
+Architecture: amd64
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/libs
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 2822
+Depends: libblkid1 (>= 2.16), libc6 (>= 2.28), libnvpair1linux (>= 0.8.4), libudev1 (>= 183), libuuid1 (>= 2.16), zlib1g (>= 1:1.1.4)
+Breaks: libzpool2
+Replaces: libzpool2
+Filename: dists/buster/pbs/binary-amd64/libzpool2linux_0.8.4-pve2_amd64.deb
+Size: 816712
+MD5sum: 63231e1599ff42a90cf9d5cf606301e8
+SHA1: 071927a199661e51efb9afb31f0badf74f09b6af
+SHA256: 6a2f3e0bd52a0b140548799dccdab19e7102df75595fea32cfc6f15935020f55
+SHA512: a6baa0bed727ace873a9fbc08e0c93d8beda149c7bf3e5ad7aefe5f5f860d1fcc9be5311a34227762027eaa9955c2071dcbb7ba115da87b1912ce2b4285fade7
+Homepage: https://www.zfsonlinux.org/
+Description: OpenZFS pool library for Linux
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This zpool library provides support for managing zpools.
+
+Package: linux-tools-5.3
+Architecture: amd64
+Version: 5.3.18-1
+Priority: optional
+Section: devel
+Source: pve-kernel
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 6759
+Depends: linux-base, libbabeltrace1 (>= 1.5.4), libc6 (>= 2.28), libdw1 (>= 0.157), libelf1 (>= 0.144), liblzma5 (>= 5.1.1alpha+20120614), libnuma1 (>= 2.0.11), libslang2 (>= 2.2.4), libunwind8, libzstd1 (>= 1.3.2), zlib1g (>= 1:1.1.4)
+Filename: dists/buster/pbs/binary-amd64/linux-tools-5.3_5.3.18-1_amd64.deb
+Size: 1350720
+MD5sum: f085a1998e22a576a086d115003089f3
+SHA1: 96e059839d1378e9b106e6bfeb8c94bf36ff5051
+SHA256: 3b5ebd87315ca6affd232099ddf3077335e47b47d49058902bb3544f2dbb1146
+SHA512: 401c6ddac98b804aca768c02c219a6233e137bb40a9e5a84a43a419a5c675955dd40c257a582566ad6ee32a225f3642f20fecd0db81d2489c31d461bb7fa2013
+Description: Linux kernel version specific tools for version 5.3
+ This package provides the architecture dependent parts for kernel
+ version locked tools (such as perf and x86_energy_perf_policy)
+
+Package: pbs-i18n
+Architecture: all
+Version: 2.2-2
+Priority: optional
+Section: perl
+Source: proxmox-i18n
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 205
+Filename: dists/buster/pbs/binary-amd64/pbs-i18n_2.2-2_all.deb
+Size: 48680
+MD5sum: cf76f5d6c2b3cb83c25242bd176ee95e
+SHA1: 671c38d18c3890abf23bed75b7efe8a0d1b3386d
+SHA256: a9967d0e65e24d05660ef603574222c267e63b8f0985fbdf51e6c5c5aa410844
+SHA512: 2b82b31ed8a3c3b45b0db9048e416af35bbf54c83c2321ecd63cd0637b05ee28cae35467228a6c87d4b62d2dfe0e6ed3ae5042273a1dd99a155fbfa431210a83
+Homepage: http://www.proxmox.com
+Description: Internationalization support for Proxmox Backup Server
+ This package provides the translations into all available languages.
+
+Package: proxmox-archive-keyring
+Architecture: all
+Version: 1.0
+Priority: optional
+Section: misc
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 17
+Filename: dists/buster/pbs/binary-amd64/proxmox-archive-keyring_1.0_all.deb
+Size: 4288
+MD5sum: efebb2f3403a01c818b07b55129a0b34
+SHA1: 979a7a5dcb41deb8e09222ff0b781d161dd54e42
+SHA256: 02808ca1178a77a2e43ab70c5cc604f281251cdd463597fd83dda290eb510c8c
+SHA512: 601f1fb1efc61af1b893d5202f5a42617be570274f7ad8fbc793b02deb6fb468a1526ad2c0639e43a5acbc37aae0f87f3f34e55df3a47b365c19de073a75879e
+Description: Proxmox APT archive keyring
+ This package contains the release keyrings used to sign APT repositories for
+ various Proxmox products.
+
+Package: proxmox-backup-client
+Architecture: amd64
+Version: 1.0.1-1
+Priority: optional
+Section: admin
+Source: rust-proxmox-backup
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 10929
+Depends: qrencode, libacl1 (>= 2.2.23), libapt-pkg5.0 (>= 0.8.0), libc6 (>= 2.25), libfuse3-3 (>= 3.2.3), libgcc1 (>= 1:4.2), libpam0g (>= 0.99.7.1), libssl1.1 (>= 1.1.0), libstdc++6 (>= 5.2), libsystemd0, libudev1 (>= 183), libuuid1 (>= 2.16), libzstd1 (>= 1.3.2)
+Filename: dists/buster/pbs/binary-amd64/proxmox-backup-client_1.0.1-1_amd64.deb
+Size: 2499852
+MD5sum: a42b2bd368a628c1e77eb91cf58f3c76
+SHA1: c7d283791b0d94ba249d4a6c574181dc1bfc5a81
+SHA256: 0c28d450ea37918b584d3beec7ec00edfeaf26dedb4231f3fb9be352f83c989f
+SHA512: d6403d8821c70d8acbae6e66e4988d5dcbcaad2d9b6a154d7c787e2168fbf3517e42a1d1c41a9545c8a9aa93b9e9265cc69835229e5fae63e12f84dfe3f6b1d2
+Homepage: https://www.proxmox.com
+Description: Proxmox Backup Client tools
+ This package contains the Proxmox Backup client, which provides a
+ simple command line tool to create and restore backups.
+
+Package: proxmox-backup-docs
+Architecture: all
+Version: 1.0.1-1
+Priority: optional
+Section: doc
+Source: rust-proxmox-backup
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 4689
+Depends: libjs-extjs
+Filename: dists/buster/pbs/binary-amd64/proxmox-backup-docs_1.0.1-1_all.deb
+Size: 2165556
+MD5sum: f0e219b119e551cae59463b74d8b9cfb
+SHA1: acf0782a8c297858438628ee666f252c63ce769b
+SHA256: 6daf6439b829ed9ad5b2f851b23e3ae21300a66a39c007675d5de2953486fb16
+SHA512: 71b3b4f4033cc41e427bd3e5bd86e442c365e07c29f6473a231e23e5fa7b5e9aceceba4da0560b651e4000cedfbab70335da50b7efafb72837d41ca8aaded1e7
+Homepage: https://www.proxmox.com
+Description: Proxmox Backup Documentation
+ This package contains the Proxmox Backup Documentation files.
+
+Package: proxmox-backup-server
+Architecture: amd64
+Version: 1.0.1-1
+Priority: optional
+Section: admin
+Source: rust-proxmox-backup
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 35692
+Depends: fonts-font-awesome, libjs-extjs (>= 6.0.1), libzstd1 (>= 1.3.8), lvm2, openssh-server, pbs-i18n, postfix | mail-transport-agent, proxmox-backup-docs, proxmox-mini-journalreader, proxmox-widget-toolkit (>= 2.3-6), pve-xtermjs (>= 4.7.0-1), smartmontools, libacl1 (>= 2.2.23), libapt-pkg5.0 (>= 0.8.0), libc6 (>= 2.25), libfuse3-3 (>= 3.2.3), libgcc1 (>= 1:4.2), libpam0g (>= 0.99.7.1), libssl1.1 (>= 1.1.1), libstdc++6 (>= 5.2), libsystemd0, libudev1 (>= 183), libuuid1 (>= 2.16)
+Recommends: zfsutils-linux, ifupdown2
+Filename: dists/buster/pbs/binary-amd64/proxmox-backup-server_1.0.1-1_amd64.deb
+Size: 8192344
+MD5sum: bb69acf8001abbbe3474360eb073faf2
+SHA1: b88d4ba5685787717c5e836a84081de6cbc7f6c5
+SHA256: 87cafa71dc5780640861e16169ca1aa9f8ba156a2c35e58ae795ee2ceaea0331
+SHA512: 6095d296858b63f4e9a52585eed0fc7e407d6856c0075cfe6ad4e98450b0e2ca2db5eb0acc01df9071b3f3885e5dc57e6b516cd396665f60f7f9ba0848eb398c
+Homepage: https://www.proxmox.com
+Description: Proxmox Backup Server daemon with tools and GUI
+ This package contains the Proxmox Backup Server daemons and related
+ tools. This includes a web-based graphical user interface.
+
+Package: proxmox-backup
+Architecture: all
+Version: 1.0-4
+Priority: optional
+Section: admin
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 18
+Depends: libc6, proxmox-archive-keyring, proxmox-backup-client, proxmox-backup-server, pve-kernel-5.4, pve-kernel-helper
+Filename: dists/buster/pbs/binary-amd64/proxmox-backup_1.0-4_all.deb
+Size: 2688
+MD5sum: 36130e193ccf3ed404ae84103d32aa1a
+SHA1: 1c16bfb219dcd58cc1c8144e7c33c86cfddc577b
+SHA256: a8e73406b3abecb8700a35ffede5e4a44be2d8cbbdce7f222f8ac6b546720b47
+SHA512: b6820bb1c244d703412eb6c318a5dcb3a2692ab76215bcae2008cb74dbdda7f97eb4c14f5c03ca69f5dc1d5b49d6532e0d6d2ac2c36dfddc47d967f5b800e42f
+Description: Proxmox Backup Server metapackage
+ This is a meta package which will install everything needed to run a
+ Proxmox Backup server. This package also depends on the latest
+ available Proxmox kernel.
+
+Package: proxmox-mini-journalreader
+Architecture: amd64
+Version: 1.1-1
+Priority: optional
+Section: admin
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 24
+Depends: libc6 (>= 2.4), libsystemd0
+Filename: dists/buster/pbs/binary-amd64/proxmox-mini-journalreader_1.1-1_amd64.deb
+Size: 6280
+MD5sum: cd81d58d2d8457a968ae16bc07d883eb
+SHA1: 0301c71610e80403995db76da82ab2d228be36b6
+SHA256: ba77e95298a0eb1e326952414910f2843c9ef52daaeebe47e84ded01a90587d0
+SHA512: 78b58441203569f01dfcecf71c30963ab2474a1fa03fd6c2c964fcdd99f19fe254a1dcec5ed5f2c100a2470917c8a76391664d1a81a69e0450ecf25c262050e5
+Description: Minimal systemd Journal Reader
+ A minimal application to read the last X lines of the systemd journal or the
+ last X lines before a cursor.
+
+Package: proxmox-widget-toolkit
+Architecture: all
+Version: 2.3-10
+Priority: optional
+Section: web
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 257
+Filename: dists/buster/pbs/binary-amd64/proxmox-widget-toolkit_2.3-10_all.deb
+Size: 64168
+MD5sum: 7b44a08f3c1cc378376af700d8f36726
+SHA1: 401b643bf628bdee07ccef6b40b3e8826365b76b
+SHA256: 5af1ae31feb5f946cbcd92f399c88f6fa61e7a2c66e86ad58b29b15b5757b301
+SHA512: 84bd5a4a8ab0aa6979178727f77790f88d257c3a494c78853e72a5b55aa9b6fb885aaa9a4819b1ac6c46aeac342cef966b87f14f1243d988ba8185162a63113d
+Homepage: http://www.proxmox.com
+Description: ExtJS Helper Classes for Proxmox
+ ExtJS Helper Classes to easy access to Proxmox APIs.
+
+Package: pve-firmware
+Architecture: all
+Version: 3.1-3
+Priority: optional
+Section: misc
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 191809
+Suggests: linux-image
+Conflicts: firmware-amd-graphics, firmware-atheros, firmware-bnx2, firmware-bnx2x, firmware-brcm80211, firmware-cavium, firmware-intelwimax, firmware-ipw2x00, firmware-ivtv, firmware-iwlwifi, firmware-libertas, firmware-linux-free, firmware-linux-nonfree, firmware-misc-nonfree, firmware-myricom, firmware-netxen, firmware-qlogic, firmware-ralink, firmware-realtek, firmware-siano, firmware-ti-connectivity
+Replaces: firmware-amd-graphics, firmware-atheros, firmware-bnx2, firmware-bnx2x, firmware-brcm80211, firmware-cavium, firmware-intelwimax, firmware-ipw2x00, firmware-ivtv, firmware-iwlwifi, firmware-libertas, firmware-linux-free, firmware-linux-nonfree, firmware-misc-nonfree, firmware-myricom, firmware-netxen, firmware-qlogic, firmware-ralink, firmware-realtek, firmware-siano, firmware-ti-connectivity
+Filename: dists/buster/pbs/binary-amd64/pve-firmware_3.1-3_all.deb
+Size: 46874468
+MD5sum: 584f1672242a355fdc348a421c735190
+SHA1: 623b76e9b9753a20c5897a0ac4b47cb0bf5c71d5
+SHA256: 53fc90bad72664c17443baba1f591fcd2961bcca7f3dd3e4c116016a5bacf006
+SHA512: 574e9929a81192cb4d9c5671cb152b793fe4fe0a8f9c0009a2def005c7560966051cd3d771ece3d61a04fff301850c3d0fd4c34b2be424236c6881d813721eec
+Homepage: http://www.proxmox.com
+Description: Binary firmware code for the pve-kernel
+ This package contains the binary firmware for various modules used in
+ the pve-kernel.
+
+Package: pve-headers-5.4.65-1-pve
+Architecture: amd64
+Version: 5.4.65-1
+Priority: optional
+Section: devel
+Source: pve-kernel
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 66184
+Provides: linux-headers, linux-headers-2.6
+Depends: coreutils | fileutils (>= 4.0)
+Filename: dists/buster/pbs/binary-amd64/pve-headers-5.4.65-1-pve_5.4.65-1_amd64.deb
+Size: 9956116
+MD5sum: 7072a796bad3d9dba32c7ee2ed331e4a
+SHA1: fe709676abe9b9b7535301a26ab78420a0eca2d6
+SHA256: 63b74cb8042480d9a31e500dc365219b90f3e8596fb934f5ccc29c02fe2267c8
+SHA512: ab44334cb34c80652c3abc9fe69829ed23a10711a2cb531a71f7cdea0e6e0da2446f98e9c5ecf597e9a10a95e9a197b1eaf8cc31511fd68ca53b371f50d65b87
+Description: The Proxmox PVE Kernel Headers
+ This package contains the linux kernel headers
+
+Package: pve-headers-5.4
+Architecture: all
+Version: 6.2-7
+Priority: optional
+Section: admin
+Source: pve-kernel-5.4
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 9
+Depends: pve-headers-5.4.65-1-pve
+Filename: dists/buster/pbs/binary-amd64/pve-headers-5.4_6.2-7_all.deb
+Size: 3192
+MD5sum: 3b5171b374102f5fbe0fac9a85a36953
+SHA1: b2b791e01c13380ff304f0f2332dfdb7cf77a2ee
+SHA256: 47e56b57eb058c2d4f85a29481bcb737006b3b798b2859f2db801714fdeefeed
+SHA512: 4a637c7281f98f21af71cee912ea5d48f87317b8f4d7238b446959d8f2bd2c3588560ee106d1f3499fbbee3d7fc4b7108d22f4e83ade0c2287bd3388de4b60f0
+Description: Latest Proxmox VE Kernel Headers
+ This is a metapackage which will install the kernel headers
+ for the latest available proxmox kernel from the 5.4
+ series.
+
+Package: pve-kernel-5.4.65-1-pve
+Architecture: amd64
+Version: 5.4.65-1
+Priority: optional
+Section: admin
+Source: pve-kernel
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 280862
+Provides: linux-image, linux-image-2.6
+Depends: busybox, initramfs-tools
+Recommends: grub-pc | grub-efi-amd64 | grub-efi-ia32 | grub-efi-arm64
+Suggests: pve-firmware
+Filename: dists/buster/pbs/binary-amd64/pve-kernel-5.4.65-1-pve_5.4.65-1_amd64.deb
+Size: 60320408
+MD5sum: 439841a4bb83879a7a42f1622b365a15
+SHA1: 7fd2e54a0f16901144ed14976e6a92cd071f2689
+SHA256: dfb8e3c109d171738c171ad0d145e8034f68012ad7e5787e21c9446b6178c153
+SHA512: 3bc0c3beb3a98eb86db2a1d9a575cc6e4b32887ef3c3d61ab51089e00d435db57b4f9eba7a24c01741a1054f1acb558f5a5a8c0f404b5113e7d2ed17e8c45b3e
+Description: The Proxmox PVE Kernel Image
+ This package contains the linux kernel and initial ramdisk used for booting
+
+Package: pve-kernel-5.4
+Architecture: all
+Version: 6.2-7
+Priority: optional
+Section: admin
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 11
+Depends: pve-firmware, pve-kernel-5.4.65-1-pve
+Filename: dists/buster/pbs/binary-amd64/pve-kernel-5.4_6.2-7_all.deb
+Size: 3516
+MD5sum: 263b173f2d63e6cfb3d68990af5f0f8a
+SHA1: f7e616b36c78a06a96f06a219b0792404d2e53ae
+SHA256: 8ee9ffb69ae7c96eea14880fce5f537a9ee94f9851dff9d99178a10f2a4b97fd
+SHA512: a7c9e318fc7db4ebe1b245790fe2b10891286cb2936754528cf8d868bbdbac63eda0df088d87e7200ada6f96b962b6dbc1707d5d207589a541d77d486b813888
+Description: Latest Proxmox VE Kernel Image
+ This is a metapackage which will install the latest available
+ proxmox kernel from the 5.4 series.
+
+Package: pve-kernel-helper
+Architecture: all
+Version: 6.2-7
+Priority: optional
+Section: admin
+Source: pve-kernel-5.4
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 44
+Depends: dosfstools, gdisk, systemd, udev
+Breaks: proxmox-ve (<< 6.0-2~)
+Replaces: proxmox-ve (<< 6.0-2~)
+Filename: dists/buster/pbs/binary-amd64/pve-kernel-helper_6.2-7_all.deb
+Size: 9436
+MD5sum: 0d27ce21427df964c338bcc9f7ac93d1
+SHA1: b9d1c90afda3a27ed69177517d5a210db9f5010e
+SHA256: cf0d7c21de6edf8a8a4a39845f46f89f3ef4971988808ed372658bc6b76d4471
+SHA512: c0686d18d6b46719e06f8e42867de5cfcffd2cbc2068314f7dd85cbe05b387d292adfba5557ba32a02417002d72a852bd380fd269fe705fca360c323514ce1a3
+Description: Function for various kernel maintenance tasks.
+ .
+ This package includes kernel-hooks for marking certain kernels as
+ NeverAutoRemove and helpers for systemd-boot
+
+Package: pve-xtermjs
+Architecture: amd64
+Version: 4.7.0-2
+Built-Using: rustc (= 1.45.0+dfsg1-1~bpo10+pve1)
+Multi-Arch: allowed
+Priority: optional
+Section: admin
+Source: rust-termproxy
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 2270
+Depends: libc6 (>= 2.18), libcurl3-gnutls (>= 7.16.2), libgcc1 (>= 1:4.2), libuuid1 (>= 2.16)
+Filename: dists/buster/pbs/binary-amd64/pve-xtermjs_4.7.0-2_amd64.deb
+Size: 584852
+MD5sum: 379c7668ce0da8125449f391d904fea4
+SHA1: e3a9ac1589cfa58791c60eb58c6c6ea40f50b9cf
+SHA256: 6964d377371355d2db1544eeb40b8675ae3428196a589a76059221bd7ed9473e
+SHA512: 899db50a0604506456d03f80dff777bc9ae3898c0b89ebd4ab20e2a866178bff89859863962bc8808d68238064fd5ed900fee4258597a908d0884dd4c86d669d
+Homepage: http://www.proxmox.com
+Description: Binaries built from the Rust termproxy crate
+ This package contains the following binaries built from the Rust crate
+ "termproxy":
+  - termproxy
+X-Cargo-Built-Using: rustc (= 1.45.0+dfsg1-1~bpo10+pve1)
+
+Package: smartmontools
+Architecture: amd64
+Version: 7.1-pve2
+Priority: optional
+Section: utils
+Maintainer: Dmitry Smirnov <onlyjob@debian.org>
+Installed-Size: 2028
+Depends: debianutils (>= 2.2), lsb-base (>= 3.2-14), libc6 (>= 2.27), libcap-ng0 (>= 0.7.9), libgcc1 (>= 1:3.0), libselinux1 (>= 1.32), libstdc++6 (>= 5.2), libsystemd0
+Suggests: gsmartcontrol, smart-notifier, mailx | mailutils, curl | wget | lynx, gpg
+Conflicts: smartsuite, ucsc-smartsuite
+Filename: dists/buster/pbs/binary-amd64/smartmontools_7.1-pve2_amd64.deb
+Size: 538880
+MD5sum: ad2f866b1d185787424d0f89432e3901
+SHA1: e56f96d3d31fb1d38eb8036151fe2f9e5f215d9b
+SHA256: 7b324d769be5b8ff741c58b8c7090c56e4538d9dc2838217fd66a3ffe4ad2b17
+SHA512: 0d06c87d24e69751335dcd585be01fb53a066dd7ea837e5128a9a6e91f31266d6c03ed51a3a7612b12a3364e45fc5d3560b619ded6ce49413d099895baa60e00
+Homepage: http://smartmontools.sourceforge.net/
+Description: control and monitor storage systems using S.M.A.R.T.
+ The smartmontools package contains two utility programs (smartctl and smartd)
+ to control and monitor storage systems using the Self-Monitoring, Analysis and
+ Reporting Technology System (S.M.A.R.T.) built into most modern ATA and SCSI
+ hard disks. It is derived from the smartsuite package, and includes support
+ for ATA/ATAPI-5 disks. It should run on any modern Linux system.
+
+Package: spl
+Architecture: all
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/metapackages
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 66
+Suggests: zfs-test
+Filename: dists/buster/pbs/binary-amd64/spl_0.8.4-pve2_all.deb
+Size: 19732
+MD5sum: f7ae54407e7150a0b835e212377292b1
+SHA1: 07dbbddd419892d52d5be09eb409ab198c8e5ba0
+SHA256: fdc5b91f8eebf80043e8142cf61e70f58deff1bd65f3d3140dd8957bcb4bca1e
+SHA512: a92aa5714eaba5c47b32b16c7b370fc62ad20993872800f6b04368eb2da434a6dbc635245a453daf3981602a8ec0bd1785444ed901d625bd918c697cf846ceba
+Homepage: https://www.zfsonlinux.org/
+Description: Solaris Porting Layer user-space utilities for Linux (dummy)
+ The Solaris Porting Layer (SPL) is a Linux kernel module which provides
+ many of the Solaris kernel APIs. This shim layer makes it possible to
+ run Solaris kernel code in the Linux kernel with relatively minimal
+ modification. The Solaris Porting LAyer Tests (SPLAT) is a Linux kernel
+ module which provides a testing harness for the SPL module.
+ .
+ SPL can be particularly useful when you want to track upstream Illumos
+ (or any other OpenSolaris fork) development closely and don't want the
+ overhead of maintaining a large patch which converts Solaris primitives
+ to Linux primitives.
+ .
+ This is a transitional dummy package. It can safely be removed.
+
+Package: zfs-dbg
+Architecture: amd64
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/debug
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 6973
+Depends: libnvpair1linux (= 0.8.4-pve2), libuutil1linux (= 0.8.4-pve2), libzfs2linux (= 0.8.4-pve2), libzpool2linux (= 0.8.4-pve2), zfs-zed (= 0.8.4-pve2), zfsutils-linux (= 0.8.4-pve2)
+Filename: dists/buster/pbs/binary-amd64/zfs-dbg_0.8.4-pve2_amd64.deb
+Size: 6233156
+MD5sum: c1aef9717411a97e369dcafd9e067c61
+SHA1: e971f2b5a2ce44b3b584de7b8d12ee09835d72cf
+SHA256: 77dc672b1ca810586139e30c19b69d0eab95b2c8b35fd220e89abfc6b1193497
+SHA512: 3895c6caba202981dc9f836a6697702186421bc4898b3820bdd545287a6ae86ac3032f0b95b8a833a26629952556627b1eceba1c18c4902b636ca58913838a01
+Homepage: https://www.zfsonlinux.org/
+Description: Debugging symbols for OpenZFS userland libraries and tools
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This package contains the debugging symbols for libzpool2linux, libzfs2linux,
+ libnvpair1linux, libuutil1linux, zfs-zed and zfsutils-linux.
+Build-Ids: 01a80170c7c3a4135ef34e3533d9d0d026998bd8 03e5d79ccb2a7e71942885bdb3eb643e1fa9dce4 0fc8902cf155d6dd8684157b81825381dd85573d 16beabc80d8f361eb8122eb7265b36568b6df358 1720ef3c3b5364fef64551fd0f58a89f235d120d 1ca0db87fdb69284cf68738f70ac9c337cbf21e8 20caeb45a3b69f44ebd0a0eb022af1d328627256 25a59d54a31f0cbb6c9695dd12f33a6440b2fa7a 26017c559b3e748e22c68fe3cfd1e2ee51f4d30a 27a7432f49c7193ad54c6841df0d8500eab152a5 28660b46e83ae440f595f7776d01ba03166697df 3e70f5f547d07838657505346801ff4675ab9e33 3efe1b3287010e84e6b960e2862972941a7495e5 4325e2ff95d0c41f88ec0599917e8e694b2da5d0 43ebf9eff688bd1fe12b1ee5d4667ade04c838f9 45b57b4ea59575009c959f8cb544c5670e850d79 4989ca96f5775c4e52a92f23843842655ef2c278 4b12468c0e3dd6ccec453e7714768423d16e1f93 4ba719a7e8f003a555265a3f39b2f56c1d7fe450 52ddc00bc76eb15bd47fa5451b4c3679ca3a4cbe 53c6beeef45c98be7a24c83650e306cfa50aee81 53cb66b668720783bced99819116636c3877e844 59a13ec83b7f1905fab9bfdea6d34b10f7ee1095 59c062aa6930f3af3060dd72968dc5b0cf1b73ed 64bc62066063982dd2e5786160944d6f2b76eba0 6e28c2bce612ff374ce16123724cd0276ff2ee90 717247f8be12466ec2c0324df491397cfe1cc27d 864903ad399f1802b3c2a3383f0e292f75f9df36 8678cf9c64e006f30ee156b96e8caeff20e59c60 89680575917f915ea4b22b49906a5c9e54bf6e59 8e4de3f72a196f0e151a7a03e6ea974154b4bd62 8e6969f5987e8b0858924e1ae25beb75ea74afb7 912e03715d34d8d1ed54798b452b72b93d229086 986e014949869c4bf0a3c160db05480fadf2b245 a3898a0f31b6d2ba9600e80ee7376d5e0e0c5770 a57b2df3969567eeb9521952b075915f78a41670 a8a87b4c5ba8cb593f187e320eb4edc195469cb2 acb5ee8599674649e2b0fe6ee5da5c58eb94b243 b24a520e0ffc580c188da11ffc44d7e589ed00ed b3f8067939487fb9be0b600ac183bdaf84b8b7b5 b5b501e0b00758b3cf5d155612882973be27b17e b6063415965d4519998b8b5af5efce0b977dffc6 b7c8313d46ec6033fa5acdaafe4b570393678499 c1d51f0273e849ce93cfebe7c55971b29ce5e2d4 c37a6e2269382b7b6658f95bc21b4b673e2e4a3f c727a1e3b0adc756949fe9ea96f4c9129c897e27 cb8074c06d48f1ebfc9698a32b830ddd510b4a7b cbfef75b210fb800b4b0fe3dc807d772be9a92cb d36fb2db758632396b86357c821756c1cdf40a4e e49b3c970362569ae5277505c247962895d34a8b e580a98caf57d8b71db958667e4c889d94e8f3f5 ecf0bf23fdd6909e9d78bbbe60ee0b7084adcc9a f37c6a7cfba1ee5c9700c37a896ad94ad2d6b152 fb3edc4bbfc6c53d1b0df35e48599c18796ea218 fcaa31122ad5ac02d6707c1cecb51c944822d3d8
+
+Package: zfs-initramfs
+Architecture: all
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/kernel
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 109
+Depends: busybox-initramfs | busybox-static | busybox, initramfs-tools, zfsutils-linux (>= 0.8.4-pve2)
+Breaks: zfsutils-linux (<= 0.7.11-pve1~bpo1)
+Replaces: zfsutils-linux (<= 0.7.11-pve1~bpo1)
+Filename: dists/buster/pbs/binary-amd64/zfs-initramfs_0.8.4-pve2_all.deb
+Size: 29640
+MD5sum: 7fc633028709861bfa8f87f5feb61842
+SHA1: 298d5fb6e67ca485b8f3918cfc1da5390fa4a423
+SHA256: 467c766f2a5392b0bc3b481045886c38eb341445ac5d6ceeded80f18830df0fd
+SHA512: 805170574fbc6e41f192823dabaa07d3b2c897ac9c7fece25b933d9aedc7c313e1b4d247dc3e25e765bc25e713e684e9206135c60e023db9f4bc00adcf898292
+Homepage: https://www.zfsonlinux.org/
+Description: OpenZFS root filesystem capabilities for Linux - initramfs
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This package adds OpenZFS to the system initramfs with a hook
+ for the initramfs-tools infrastructure.
+
+Package: zfs-zed
+Architecture: amd64
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/admin
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 241
+Depends: zfsutils-linux (>= 0.8.4-pve2), libc6 (>= 2.28), libnvpair1linux (>= 0.8.4), libudev1 (>= 183), libuuid1 (>= 2.16), libuutil1linux (>= 0.8.4), libzfs2linux (>= 0.8.4), zlib1g (>= 1:1.1.4)
+Filename: dists/buster/pbs/binary-amd64/zfs-zed_0.8.4-pve2_amd64.deb
+Size: 65432
+MD5sum: d92345ca8fb729f9f5e7ed629e491fa7
+SHA1: 7b96d99b24686feee683205aafc2a27c75ad177e
+SHA256: 87a41bc418a86dcdc7b3d8c3edf51649e70cc9701f6744220e663ed2870348d7
+SHA512: c73baf256ffdb4ff4a3632dee44444da0e349d2405115c7317b1cc07e14dddb44919f923117f332741ced4bda51ec3b843fe1026a143038388bb9273ae33ea41
+Homepage: https://www.zfsonlinux.org/
+Description: OpenZFS Event Daemon
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This package provides the OpenZFS Event Daemon (zed).
+
+Package: zfsutils-linux
+Architecture: amd64
+Version: 0.8.4-pve2
+Priority: optional
+Section: contrib/admin
+Source: zfs-linux
+Maintainer: Proxmox Support Team <support@proxmox.com>
+Installed-Size: 1236
+Provides: zfsutils
+Depends: python3, libblkid1 (>= 2.16), libc6 (>= 2.17), libnvpair1linux (>= 0.8.4), libudev1 (>= 183), libuuid1 (>= 2.16), libuutil1linux (>= 0.8.4), libzfs2linux (>= 0.8.4), libzpool2linux (>= 0.8.4), zlib1g (>= 1:1.1.4)
+Recommends: lsb-base, zfs-zed
+Suggests: nfs-kernel-server, samba-common-bin (>= 3.0.23), zfs-initramfs
+Conflicts: zfs, zfs-fuse
+Filename: dists/buster/pbs/binary-amd64/zfsutils-linux_0.8.4-pve2_amd64.deb
+Size: 366664
+MD5sum: 89a480c74774786fb992d3ed5c1acb6d
+SHA1: d7a80c3568cd0584c5ce50f3150987ef004a632b
+SHA256: ae67fab0214a03185ccbdd049682f2bb7bad0e4e7c90636094e97d7cdb8d845c
+SHA512: a6e724511447aaea2ef02f353a85480faedbdfc4b3d101bc16b77cee3e910af917efcbb49ca7d91ae706313e153d1312f346f0727d2d331db6adc0f65a457cfe
+Homepage: https://www.zfsonlinux.org/
+Description: command-line tools to manage OpenZFS filesystems
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This package provides the zfs and zpool commands to create and administer
+ OpenZFS filesystems.
+
