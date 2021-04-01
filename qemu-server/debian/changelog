@@ -1,0 +1,3699 @@
+qemu-server (6.3-10) pve; urgency=medium
+
+  * increase timeout for block (disk) resize QMP command
+
+  * fix #3314: cloudinit: IPv6 requires type 'static6'
+
+  * fix #2670: cloudinit: enable SLAAC again now that client support is there
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 30 Mar 2021 18:40:58 +0200
+
+qemu-server (6.3-9) pve; urgency=medium
+
+  * restore vma: fix applying storage-specific bandwidth limit
+
+  * snapshot: set migration caps before savevm-start
+
+  * vzdump: improve error logging for query-proxmox-support to avoid
+    false-positives
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 26 Mar 2021 09:47:27 +0100
+
+qemu-server (6.3-8) pve; urgency=medium
+
+  * qm status: sort hash keys on verbose output
+
+  * improve windows VM version pinning on VM creation
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 12 Mar 2021 10:01:09 +0100
+
+qemu-server (6.3-7) pve; urgency=medium
+
+  * vzdump: increase Proxmox Backup Server backup QMP command timeout
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 09 Mar 2021 08:21:43 +0100
+
+qemu-server (6.3-6) pve; urgency=medium
+
+  * fix #3324: clone disk: use larger blocksize for EFI disk
+
+  * fix #3301: status: add currently running machine and QEMU version to full
+    status
+
+  * api: add endpoint to list all available QEMU machine type and version
+    tuples
+
+  * always pin virtual machines with Windows as ostype to a fixed QEMU machine
+    version by default. For existing VMs with Windows based OS-type use the 5.1
+    machine version (or the next available one, for older QEMU versions) to
+    improve stabillity of the hardware layout from Windows point of view. Linux
+    and other OS types are not as sensitive to those changes, so keep the
+    default to the currently latest available machine versions for non-Windows
+    VMs.
+
+  * update VM: check for CDROM not just drive permissions when removing a
+    device
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 05 Mar 2021 21:42:59 +0100
+
+qemu-server (6.3-5) pve; urgency=medium
+
+  * cloudinit: add opennebula config format
+
+  * cloudinit: remove pending delete on online regenerate image
+
+  * snapshot/save-vm: periodically print progress and show information about
+    drives during snapshot
+
+  * qmeventd: explicitly close() pidfds
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 11 Feb 2021 18:05:18 +0100
+
+qemu-server (6.3-4) pve; urgency=medium
+
+  * audio: add the "none" dummy audio backend
+
+  * fix drive-mirror completion with cloudinit
+
+  * vm destroy: allow opt-out of purging unreferenced disks
+
+  * fix #2788: do not resume vms after backup if they were paused before
+
+  * anchor CPU flag regex to avoid arbitrary flag suffixes
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 28 Jan 2021 17:21:07 +0100
+
+qemu-server (6.3-3) pve; urgency=medium
+
+  * api: adapt VM destroy and purge description
+
+  * clone disk: fix regression in offline clone of efidisk
+
+  * cloudinit: fix cloning/restoring of cloudinit disks in raw format
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 15 Dec 2020 16:33:01 +0100
+
+qemu-server (6.3-2) pve; urgency=medium
+
+  * PBS: use improved method to assemble repository url, fixing issues when
+    using IPv6 or non-default ports
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 03 Dec 2020 18:06:25 +0100
+
+qemu-server (6.3-1) pve; urgency=medium
+
+  * deactivate volumes after storage migrate
+
+  * print query-proxmox-support result in 'full' status
+
+  * clone disk: avoid errors after disk was moved by QEMU
+
+  * replace cgroups_write by cgroup change_cpu_shares && change_cpu_quota
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 25 Nov 2020 14:30:50 +0100
+
+qemu-server (6.2-20) pve; urgency=medium
+
+  * don't migrate replicated VM whose replication job is marked for
+    removal
+
+  * ensure qmeventd service is stopped after pve-guests and pve-ha-lrm service
+    on shutdown
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 12 Nov 2020 17:08:45 +0100
+
+qemu-server (6.2-19) pve; urgency=medium
+
+  * fix #3113: unbreak drive hotplug
+
+  * qmeventd: add handling for -no-shutdown QEMU instances, to avoid errors if
+    the guest OS shuts down the VM during a backup job.
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 05 Nov 2020 13:37:00 +0100
+
+qemu-server (6.2-18) pve; urgency=medium
+
+  * migrate: tell QEMU to enable dirty-bitmap migration, if supported
+
+  * partially fix #3056: always try to cancel backups when failed to start job
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 29 Oct 2020 18:23:13 +0100
+
+qemu-server (6.2-17) pve; urgency=medium
+
+  * bootorder: don't print empty 'order=' property
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 22 Oct 2020 16:08:57 +0200
+
+qemu-server (6.2-16) pve; urgency=medium
+
+  * fix #3010: add 'bootorder' parameter for better control of boot devices
+
+  * fix VM clone from snapshot with cloudinit disk
+
+  * fix various possible issues by avoiding conditionally declared variables
+    altogether
+
+  * PCI passthrough: fix setting VGA to 'none' when marking passed-through
+    device as 'Primary GPU'
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 19 Oct 2020 15:51:48 +0200
+
+qemu-server (6.2-15) pve; urgency=medium
+
+  * fix #2570: add 'keephugepages' config property
+
+  * vzdump: log 'finishing' state for Proxmox Backup Server jobs, to avoid
+    suggesting that the backup is stuck at 100%. This can happen when the
+    validation and mark of pre-existing chunks needs a bit longer.
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 29 Sep 2020 17:44:28 +0200
+
+qemu-server (6.2-14) pve; urgency=medium
+
+  * vzdump: allow bandwidth limit also PBS backup
+
+  * avoid a warning when checking the VMs bios
+
+  * fix #2862: properly backup (all) VM templates
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 24 Aug 2020 19:33:54 +0200
+
+qemu-server (6.2-13) pve; urgency=medium
+
+  * fix use of bandwidth limits with offline storage migrate
+
+  * allow one to add CPU features with a dot, like "+sse4.2", correctly
+
+  * vzdump: improve logging output and report dirty bitmap state for each disk
+
+  * vzdump: display actually uploaded chunks as 'write' speed to conform more
+    closely with the actual network transmission line-speed.
+
+  * fix #2749: vga: disable the display EDID information for the combination of
+    Windows SeaBIOS and VGA guests to avoid a reduced list of possible screen
+    resolutions. (Windows may cache the list of possible resolutions,
+    uninstalling 'Microsoft Basic Display Adapter' and rebooting may then help)
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 20 Aug 2020 11:42:47 +0200
+
+qemu-server (6.2-11) pve; urgency=medium
+
+  * fix #2857: restore: pass keyfile to pbs-restore
+
+  * fix #2728: die/warn if target is not a replication target when
+    live-migrating
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 24 Jul 2020 08:13:29 +0200
+
+qemu-server (6.2-10) pve; urgency=medium
+
+  * pass-through: fix mdev cmdline generation
+
+  * docs: add man page cpu-models.conf(5)
+
+  * start: set resume parameter for VM start anytime there is a 'vmstate' in
+    the config, not just when it has the 'suspend' lock
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 13 Jul 2020 13:37:37 +0200
+
+qemu-server (6.2-9) pve; urgency=medium
+
+  * support encrypted pbs backups
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 10 Jul 2020 14:23:46 +0200
+
+qemu-server (6.2-8) pve; urgency=medium
+
+  * backup: detect PBS features and use only supported
+
+  * fix #2671: include CPU format in man page again
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 09 Jul 2020 15:14:36 +0200
+
+qemu-server (6.2-6) pve; urgency=medium
+
+  * vzdump: fix variable redeclaration warning
+
+  * make backup log more friendlier to read for humans
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 07 Jul 2020 19:00:09 +0200
+
+qemu-server (6.2-4) pve; urgency=medium
+
+  * fix #2787: properly parse vga for vncproxy
+
+  * vncproxy: allow to request a generated VNC password
+
+  * fix #2794: allow legacy IGD passthrough
+
+  * avoid backup command timeout with PBS
+
+  * fix #2741: add VM.Config.Cloudinit permission
+
+  * enable dirty-bitmap incremental backups for PBS
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 30 Jun 2020 11:33:35 +0200
+
+qemu-server (6.2-3) pve; urgency=medium
+
+  * fix #2748: make order of cloudinit interfaces consistent
+
+  * fix #2774: add early check for non-managed volumes
+
+  * allow to force MTU for a VM net-device
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 04 Jun 2020 11:17:09 +0200
+
+qemu-server (6.2-2) pve; urgency=medium
+
+  * adapt net-device hotplug to more strict QMP schema of QEMU 5.0
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 08 May 2020 13:00:18 +0200
+
+qemu-server (6.2-1) pve; urgency=medium
+
+  * qmrestore: fix VMA restore from STDIN
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 07 May 2020 21:51:01 +0200
+
+qemu-server (6.1-20) pve; urgency=medium
+
+  * cfg2cmd: fix uninitialized value warning on OVMF w/o efidisk
+
+  * vzdump: fix backup of templates with stdout as output
+
+  * cfg2cmd: set audiodev parameter only on qemu >= 4.2
+
+  * api: allow listing custom and default CPU models
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 06 May 2020 17:16:56 +0200
+
+qemu-server (6.1-19) pve; urgency=medium
+
+  * clone: use new config_lock_shared
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 5 May 2020 11:22:04 +0200
+
+qemu-server (6.1-18) pve; urgency=medium
+
+  * vzdump: assemble: fix skipping all pending and snapshot config entries
+
+  * api/destroy: repeat early checks after locking
+
+  * migrate: skip rescan for efidisk and shared volumes
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 04 May 2020 17:36:40 +0200
+
+qemu-server (6.1-17) pve; urgency=medium
+
+  * backup: never try to freeze in stop mode backup
+
+  * Fix #2124: Add support for zstd
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 4 May 2020 14:11:50 +0200
+
+qemu-server (6.1-16) pve; urgency=medium
+
+  * spice audio: improve compatibility with QEMU versions newer than 4.2
+
+  * migrate: workaround issues with format switch on storage live migration
+
+  * fix live migration with replicated unused volumes
+
+  * importovf: improve compatibility with OVF files without default namespaces
+
+  * backup restore: use correct storage for format check for cloudinit drives
+
+  * handle stopping the storage migration NBD server better
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 29 Apr 2020 16:23:24 +0200
+
+qemu-server (6.1-14) pve; urgency=medium
+
+  * Use foreach_volume instead of foreach_drive
+
+  * Use new storage_migrate interface
+
+  * migrate: update config with changed volume IDs
+
+  * migrate: allow specifying targetstorage for offline migration
+
+  * migrate: sync_disks: use allow_rename to avoid collisions on the target
+    storage
+
+  * migrate: sync_disks: log output of storage_migrate
+
+  * migrate: also cleanup disks migrated by storage_migrate in case of failure
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 9 Apr 2020 08:56:44 +0200
+
+qemu-server (6.1-13) pve; urgency=medium
+
+  * rescan: fix call to foreach_volume
+
+  * migration: fix downtime limit auto-increase
+
+  * migrate: allow arbitrary source->target storage maps
+
+  * migrate: always check storage permissions and content type
+
+  * Include full KVM/QEMU "-cpu" parameter with live-migration and
+    snapshots/suspend to allow supporting custom CPU models
+
+  * fix #2318: allow phys-bits CPU setting
+
+  * allow custom CPU models
+
+  * config: harmonize bridge pattern to match the same limits of containers
+
+  * cpu config: add upcoming EPYC-Rome CPU type
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 08 Apr 2020 17:08:13 +0200
+
+qemu-server (6.1-12) pve; urgency=medium
+
+  * CPUConfig: fix module load when pmxcfs is unavailable
+
+  * migrate: fix replication false-positives
+
+  * migrate: cleanup disk/bitmaps if 'qm start' failed
+
+  * migration with targetstorage: check if target storage supports images
+
+  * fix efidisks on storages with minimum sizes bigger than OVMF_VARS.fd
+
+  * Implement volume-related helpers and use new foreach_volume
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 30 Mar 2020 10:00:13 +0200
+
+qemu-server (6.1-11) pve; urgency=medium
+
+  * vzdump: fix regression in backups for specific storage
+
+  * custom CPU models: add initial parser and verifier
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 26 Mar 2020 09:00:24 +0100
+
+qemu-server (6.1-10) pve; urgency=medium
+
+  * version_guard: early out when major/minor version is high enough
+
+  * drive-mirror: add support for incremental sync
+
+  * migrate: add replication info to disk overview
+
+  * migrate: add live-migration of replicated disks
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 25 Mar 2020 15:16:21 +0100
+
+qemu-server (6.1-8) pve; urgency=medium
+
+  * cloudinit: make genisoimage quieter, only output errors
+
+  * Append newline to all QGA commands for compatibility with non standard
+    conforming Apple based guest agent implementation
+
+  * add experimental support for proxmox backup server
+
+  * fix #2580: api/delete: drop VM from HA resources if purge is set
+
+  * improve drive mirror completion over NBD during migration
+
+  * add secured unix socket support for NBD storage migration
+
+  * Disable memory hotplug for custom NUMA topologies and die on misaligned
+    memory for hotplug
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 20 Mar 2020 11:11:31 +0100
+
+qemu-server (6.1-7) pve; urgency=medium
+
+  * vzdump: always exclude efidisks from backups of machines currently not set
+    to use OVMF (UEFI)
+
+  * Simplify QEMU version check and require at least 3.0+
+
+  * Align size to 1 KiB bytes before doing 'qmp block_resize'
+
+  * fix #2611: use correct operation when calculating the migration bandwidth
+    limit
+
+  * fix #2612: allow input-data in guest exec and make command optional
+
+  * cpu models: add icelake-server and icelake-client
+
+  * already add models from future QEMU 4.2 release
+
+  * fix #2264: allow one to add a virtio-rng device for improved entropy
+    bandwidth in a VM
+
+  * update_disksize: also update disk size if there was no old size at all
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 09 Mar 2020 19:12:16 +0100
+
+qemu-server (6.1-6) pve; urgency=medium
+
+  * allow reading snapshot config for users with VM.Audit on a guest
+
+  * fix #2566: increase scsi limit to 31
+
+  * fix #2578: check if $target is provided in clone
+
+  * update QMP commands to reflect (future) depreacations and changes in QEMU
+
+  * resize volume: always request new size from storage after resizing
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 10 Feb 2020 06:40:43 +0100
+
+qemu-server (6.1-5) pve; urgency=medium
+
+  * Add QEMU CPU flag querying helpers
+
+  * hotplug_pending: remove redundant write/load config calls
+
+  * api: vm clone: unlink zombie target VM and firewall config at end of error
+    cleanup
+
+  * add timeout parameter to vm start API/CLI endpoint
+
+  * fix #2070: vm_start: for a migrating VM, use current format of disk if
+    possible
+
+  * hotplug_pending: make 'ssd' option non-hotpluggable, it cannot be changed
+    live on a plugged disk.
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 30 Jan 2020 10:27:33 +0100
+
+qemu-server (6.1-4) pve; urgency=medium
+
+  * check if QEMU version is recent enough for requested machine type
+
+  * suspend to disk: check and enforce more strict permissions
+
+  * update disk size before local disk migration
+
+  * hide very long commandline on vm_start/migrate failure
+
+  * fix #2493: show QEMU errors in migration log
+
+  * api/restore: do not trigger autostart-after-restored task from locked
+    context
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 16 Dec 2019 16:03:25 +0100
+
+qemu-server (6.1-3) pve; urgency=medium
+
+  * create efidisk: poll the real size after volume creation, as some storages
+    need to create bigger volumes as requested, to cope with their internal
+    alignment requirements.
+
+  * fix #2469: fix qemu-img convert src_format detection, wrongly reverted.
+
+  * fix #2510: hostpci: always check if specified device exists
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 09 Dec 2019 11:44:14 +0100
+
+qemu-server (6.1-2) pve; urgency=medium
+
+  * api: allow one to remove (hibernation) vmstate
+
+  * vzdump: log QGA FS freeze/thaw tries in task log
+
+  * skip efidisk0 in hotplug
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 30 Nov 2019 18:38:36 +0100
+
+qemu-server (6.1-1) pve; urgency=medium
+
+  * fix #2367: do not allow snapshot with name PENDING
+
+  * fix #2469: fix qemu-img convert src_format detection
+
+  * implement PVE Version addition for QEMU machine allowing to introduce new
+    features while keeping migration compatibility more easily
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 26 Nov 2019 13:06:21 +0100
+
+qemu-server (6.0-17) pve; urgency=medium
+
+  * PCI(e) pass-through: ensure we fallback to the previous default "0000"
+    domain again.
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 23 Nov 2019 09:52:09 +0100
+
+qemu-server (6.0-16) pve; urgency=medium
+
+  * fix #2473: use of unitialized value
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 22 Nov 2019 14:18:58 +0100
+
+qemu-server (6.0-15) pve; urgency=medium
+
+  * api/migration: fix autocomplete for targetstorage
+
+  * add 'type' to guest agent format, allowing one to choose between VirtIO
+    (default) and ISA
+
+  * clone: pre-allocate cloud-init disk for destination
+
+  * SPICE/QXL: tell Linux VMs that they can add up to 4 display when running
+    with qemu 4.1 or newer
+
+  * add support to tell showcmd helper to assume a specific forced machine
+    version when assembling a command
+
+  * refactor QemuServer to avoid cyclic module dependencies
+
+  * fix #2436: pci: do not hardcode pci domain to 0000
+
+  * add 'tags' config option for adding meta information to a VM
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 20 Nov 2019 19:41:01 +0100
+
+qemu-server (6.0-14) pve; urgency=medium
+
+  * use PVE::DataCenterConfig, use PVE::SSHInfo, use PVE::RRD for RRD data
+
+  * refactor migration IP retrieval
+
+  * add missing packages to (build-)dependencies
+
+  * fix #2457: ga: set-user-password: increase maxLength of password
+
+  * fix restoring old VM backups made with Promxox VE earlier than 2.3
+
+  * improve test mocking
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 18 Nov 2019 12:12:03 +0100
+
+qemu-server (6.0-13) pve; urgency=medium
+
+  * fix #2434: extend machine regex to support stable release machine updates
+
+  * prepare to fix #2408, #2355, #2380: use scsi-hd backend for iSCSI as well
+
+  * fix deleting pending changes for not yet existing options
+
+  * improve hugepage memory size detection
+
+  * avoid a race for VMID reservation when importing an OVF manifest to a new
+    VM
+
+  * cleanup importidsk CLI command, and say to which exact disk we imported
+
+  * add simple runtime heuristic for IOThread backup support, to ensure the VM
+    to backup was started with a recent QEMU version.
+
+  * QMPClient: ensure QMP connection is also closed in certain edge cases
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 30 Oct 2019 17:43:41 +0100
+
+qemu-server (6.0-12) pve; urgency=medium
+
+  * fix regression from 6.0-10 with vmstate restore on RBD
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 22 Oct 2019 16:31:46 +0200
+
+qemu-server (6.0-11) pve; urgency=medium
+
+  * fix #1071: VMs with IOThread enabled disks can now be backed up
+
+  * fix regression from 6.0-10 with snapshot restore and statefile
+
+  * fix regression with from 6.0-10 where forced was always assumed to be true
+    for applying pending changes
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 22 Oct 2019 12:50:18 +0200
+
+qemu-server (6.0-10) pve; urgency=medium
+
+  * fix #2344: ignore cloudinit in replication check
+
+  * fix #1291: add option purge for vm_destroy api call
+
+  * increase code re-use with pve-container for pending changes in
+    configuration
+
+  * fix #2412: only do the final configuration destroy after all the VMs
+    resources, and references in other configurations like Firewall or resource
+    pools was successfully cleaned up
+
+  * fix #2171: ensure that non filesystem based statefiles get activated on VM
+    start
+
+  * fix #2395: improve QEMU image converter to cope better with pure file based
+    sources and iSCSI source and destinations
+
+  * fix #2402: allow 1GB hugepages if 2MB is unavailable
+
+  * qemu 4.0 : add Cascadelake-Server and KnightsMill Intel CPU models
+
+  * fix #2217: don't copy cloudinit disk on clone
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 18 Oct 2019 22:04:50 +0200
+
+qemu-server (6.0-9) pve; urgency=medium
+
+  * fix issue where a SPICE remote viewer was disconnected during live migration
+
+  * Add VM reboot API/CLI integration, allowing to reboot a VM and applying any
+    pending changes in-between
+
+  * CPU flags: allow one to add aes flag
+
+  * fix #2263: die on live migration with local cloudinit disk
+
+  * fix #2041, #2272: Add Spice enhancements
+
+  * Add support for more (up to 16) PCI(e) devices
+
+  * usb: Allow one to make SPICE USB ports USB3 capabile
+
+  * allow one to use USB3 for SPICE USB ports with VMs started already with
+    QEMU version 4.0.0, as live-migrations were not possible with this previous
+    unsupported setup anyway. Live-snapshots from VMs with a SPICE USB device
+    which was manually set (wasn't possible over Webinterface) to USB3 with a
+    machine version of 4.0.0, need to remove the "usb3" flag again from the
+    snapshot config when restoring it.
+
+  * rework kvm_user_version cache mechanism
+
+  * api: deletion: check also pending values for serial/usb
+
+  * migration api: explicitly clear "online" flag if VM is stopped to avoid
+    issues with storage migrations which are handled different for stopped VMs
+
+  * abort resize disk if current size could not be determined
+
+  * fix #2382: delete cloudinit disk before restoring
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 26 Sep 2019 12:01:58 +0200
+
+qemu-server (6.0-7) pve; urgency=medium
+
+  * ensure new SPICE audio device works also with 'q35' based VMs
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 24 Jul 2019 15:13:35 +0200
+
+qemu-server (6.0-6) pve; urgency=medium
+
+  * Add SPICE audio device support
+
+  * fix #2275: die on invalid sendkey
+
+  * Make sometimes problematic 'hv-tlbflush' and 'hv-evmcs' CPU flags optional
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 23 Jul 2019 18:20:10 +0200
+
+qemu-server (6.0-5) pve; urgency=medium
+
+  * do not pass Proxmox VE internal startdate 'now' to QEMU, it does not
+    understands it
+
+  * use new pcie port hardware for 4.0 and newer q35 machine types
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 11 Jul 2019 19:44:28 +0200
+
+qemu-server (6.0-4) pve; urgency=medium
+
+  * fix guest shutdown if agent is configured but no timeout was passed
+
+  * cloudinit: set iso-level in genisoimage call
+
+  * migrate pre-condition check: add size to volume attributes and handle
+    storage not selected manually in storage config
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 28 Jun 2019 20:35:09 +0200
+
+qemu-server (6.0-3) pve; urgency=medium
+
+  * do not add evmcs HyperV enlightment at all for now due to incompatibillity
+    with AMD based hosts
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 25 Jun 2019 14:33:01 +0200
+
+qemu-server (6.0-2) pve; urgency=medium
+
+  * add migration precondition api endpoint
+
+  * wait for possible left over VM scopes to be gone through dbus based helper
+    on VM start
+
+  * fix #2244: Allow timeout for guest-agent shutdown
+
+  * fix #2083: Add hv_tlbflush, hv_ipi, hv_evmcs enlightenments
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 24 Jun 2019 17:46:51 +0200
+
+qemu-server (6.0-1) pve; urgency=medium
+
+  * SMBIOS: followup: allow now 512 characters for full format string
+
+  * fix #2190: Base64 encode SMBIOS value strings in order to allow more
+    characters
+
+  * allow one to add md-clear cpu flag
+
+  * add qm command for cloudinit config dump
+
+  * drop vnc x509 param, deprecated in 2.5 removed in 4.0
+
+  * Fix #1999: cli: listsnapshot: handle multiple roots and mark orphaned as
+    root
+
+  * drop references to un-maintained sheepdog plugin
+
+  * vm_resume: correctly honor $nocheck
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 14 Jun 2019 20:59:07 +0200
+
+qemu-server (6.0-0+1) pve; urgency=medium
+
+  * rebuild for Debian Buster / PVE 6.0
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 22 May 2019 19:12:34 +0200
+
+qemu-server (5.0-51) unstable; urgency=medium
+
+  * fix #1811: allow non root user to edit serialX: socket entries
+
+  * allow non root users to add spice usb port
+
+  * fix #1829: do not ignore format parameter when creating cloudinit
+    disk volume
+
+  * fix: #1075: Restore VM template to VM and try to convert to template
+
+  * fix #2173: use qemu-img to check cloudinit disk existence
+
+  * cloudinit: use detected format in volume name parsing
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 30 Apr 2019 14:07:59 +0000
+
+qemu-server (5.0-50) unstable; urgency=medium
+
+  * fix #2100: ignore cloudinit drive on offline migration
+
+  * honor bandwidth limits (bwlimit) for migrate, drive-mirror, clone
+    and add to API calls
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 04 Apr 2019 16:22:10 +0200
+
+qemu-server (5.0-49) unstable; urgency=medium
+
+  * return config lock in vm status
+
+  * move 'pve-snapshot-name' to common
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 21 Mar 2019 12:55:03 +0100
+
+qemu-server (5.0-48) unstable; urgency=medium
+
+  * cloud-init: allow custom network/user data files via snippets
+
+  * fix #2120: use hosts initiator name with qemu-img
+
+  * fix #2131: get correct device when deleting iothreads
+
+  * config: NIC macaddr: enforce unicast MAC addresses
+
+  * implement suspend to disk for running VMs over API and CLI
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 19 Mar 2019 13:25:38 +0100
+
+qemu-server (5.0-47) unstable; urgency=medium
+
+  * fix #2043: always stop existing systemd scopes on VM start
+
+  * use nr_hugepages from /proc/cmdline
+
+  * fix #2101: cloudinit: IPv6 ending in : not parsed as a string
+
+  * fix #1891: Add zsh command completion for qm and qmrestore
+
+  * fix #2097: allow one to set and pass the WWN parameter for IDE, SATA and
+    SCSI disks
+
+  * allow one to add IVSHMEM device to a VM configuration
+
+  * fix #2114: always set correct link status on VM network adapter hotplug
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 04 Mar 2019 10:11:00 +0100
+
+qemu-server (5.0-46) unstable; urgency=medium
+
+  * allow explicit hv-vendor-id
+
+  * allow explicit set vga with gpu passthrough
+
+  * fix #1924: add snapshot parameter
+
+  * allow to add pre- start/stop hook scripts
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 01 Feb 2019 13:04:19 +0100
+
+qemu-server (5.0-45) unstable; urgency=medium
+
+  * fix #2003: give qm terminal a terminal over ssh
+
+  * migrate: fix local disk migration with online VMs
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 21 Jan 2019 10:42:03 +0100
+
+qemu-server (5.0-44) unstable; urgency=medium
+
+  * fix #1013 : migrate : sync_disk : --targetstorage with offline disk
+
+  * add Windows 7 PCIe quirk for adding 'hostpci' devices
+
+  * fix #2032: check that type is set before assembling a VGA device
+
+  * add configuration to command regression tests
+
+  * allow 'none' as VGA option
+
+  * fix #1267: move args to the end of qemu commandline
+
+  * clone_disk : cloudinit drive: don't clone snapshot name (snapname)
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 20 Dec 2018 10:17:47 +0100
+
+qemu-server (5.0-43) unstable; urgency=medium
+
+  * usb: fix check if machine type is q35
+
+  * qm cleanup: exit silently if VM config does not belong to node
+    anymore
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 29 Nov 2018 12:57:49 +0100
+
+qemu-server (5.0-42) unstable; urgency=medium
+
+  * add mediated devices support
+
+  * use improved lspci
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 22 Nov 2018 11:22:04 +0100
+
+qemu-server (5.0-41) unstable; urgency=medium
+
+  * fix #1959: add fallback for auto previously set by SLAAC
+
+  * create_vm: don't add vmgenid for ARM machines by default
+
+  * use qmeventd to execute qm cleanup
+
+  * QemuServer: remove PCI sysfs helpers
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 19 Nov 2018 14:38:42 +0100
+
+qemu-server (5.0-40) unstable; urgency=medium
+
+  * correctly check display vga type
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 12 Nov 2018 17:27:53 +0100
+
+qemu-server (5.0-39) unstable; urgency=medium
+
+  * Add `ssd` property to IDE, SATA, and SCSI drives
+
+  * fix #1952: make vga memory configurable
+
+  * fix #1969: increase max unused disks
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 09 Nov 2018 16:23:26 +0100
+
+qemu-server (5.0-38) unstable; urgency=medium
+
+  * add second qmp socket when running qemu >= 2.12 for pending event/reboot
+    changes
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 18 Oct 2018 12:28:49 +0200
+
+qemu-server (5.0-37) unstable; urgency=medium
+
+  * add virtio to the list of valid gpu types
+
+  * lower qemu requirement for hv_synic and hv_stimer to 2.12
+
+  * prepare for deprecated functionality in qemu 3.0
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 16 Oct 2018 14:53:04 +0200
+
+qemu-server (5.0-36) unstable; urgency=medium
+
+  * fix #1908: add VM Generation ID (vmgenid) device by default on new VMs and
+    allow to set on existing ones
+
+  * fix version check in qemu_machine_feature_enabled
+
+  * use qemu's internal blockdev-snapshot functions to avoid some issues with
+    snapshots on qcow2 files
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 24 Sep 2018 11:14:32 +0200
+
+qemu-server (5.0-35) unstable; urgency=medium
+
+  * add hv_synic and hv_stimer HyperV Enlightment flags on QEMU 3.0 and later
+
+  * improve setting QEMU machine type on snapshot and rollback
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 17 Sep 2018 15:29:18 +0200
+
+qemu-server (5.0-34) unstable; urgency=medium
+
+  * fix #1865: CloudInit doesn't add IPv6
+
+  * allow to add ibpb, ssbd, virt-ssbd, amd-ssbd, amd-no-ssb and pdpe1gb CPU flags
+
+  * clone: improve message for ignoring pending changes
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 13 Sep 2018 11:37:24 +0200
+
+qemu-server (5.0-33) unstable; urgency=medium
+
+  * fix #1242: allow one to setup an automatic QEMU guest agent fstrim
+    command after cloning or moving a disk live
+
+  * define return properties for vmstatus API call
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 20 Aug 2018 14:40:46 +0200
+
+qemu-server (5.0-32) unstable; urgency=medium
+
+  * api/agent: do not dereference parameter hash before passing to
+    agent_cmd method
+
+  * api/agent: import check_agent_error method
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 30 Jul 2018 10:55:42 +0200
+
+qemu-server (5.0-31) unstable; urgency=medium
+
+  * fix #1717: delete snapshot when vm running and drive not attached
+
+  * fix qemu agent commands: add missing import of 'agent_cmd' method
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 30 Jul 2018 10:24:27 +0200
+
+qemu-server (5.0-30) unstable; urgency=medium
+
+  * Fix SPICE multi-monitor mode on VMs using q35 machine type
+
+  * extend QEMU guest agent API with file read/write, setting VM user password
+    and executing arbitrary commands in VM
+
+  * add guest command group to qm CLI tool
+
+  * add 'dryrun' to qm rescan, which only list changes but does not actually
+    saves them
+
+  * add a workaround for bug #1650: add content type filter to rescan
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 17 Jul 2018 11:39:01 +0200
+
+qemu-server (5.0-29) unstable; urgency=medium
+
+  * reserve new VM config with create lock early
+
+  * api: allow auto vm start after create finished
+
+  * use 'system_wakeup' to resume VMs suspended by their guest OS
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 15 Jun 2018 12:11:29 +0200
+
+qemu-server (5.0-28) unstable; urgency=medium
+
+  * cloud-init: improve handling of network settings for broken
+    versions (e.g., the one currently used by CentOS 7)
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 11 Jun 2018 12:48:42 +0200
+
+qemu-server (5.0-27) unstable; urgency=medium
+
+  * qm agent: check if qga service is running
+
+  * fix #1779: vzdump: ensure guest-fsfreeze-thaw is called on error
+
+  * fix #1780: change datacenter.conf to datacenter.cfg in description
+
+  * fix logic of deleting balloon config property
+
+  * activate volume for cloudinit disk
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 05 Jun 2018 15:24:14 +0200
+
+qemu-server (5.0-26) unstable; urgency=medium
+
+  * fix #1749: do not copy pending changes when cloning a vm
+
+  * make q35 and virtio-scsi-single compatible
+
+  * fix an issue where cleanup operations run as part of a VM's systemd scope
+
+  * associate cloud-init options with with the VM.Config.Network permission
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 14 May 2018 14:04:26 +0200
+
+qemu-server (5.0-25) unstable; urgency=medium
+
+  * fix #1697: only check machine type for pxe
+
+  * fix scsi hotplug issue with q35 machines
+
+  * fix live migration with local disk issue with nbd
+
+  * switch to new method of passing disk serials to qemu
+
+  * qemu-img convert: use cache=none for ZFS to not fill up the ARC
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 13 Apr 2018 15:11:58 +0200
+
+qemu-server (5.0-24) unstable; urgency=medium
+
+  * use pve-edk2-firmware for supporting OVMF
+
+  * restore: implement rate limiting
+
+  * stop passing default '-k' (keyboard) QEMU option from datacenter.cfg
+
+  * create linked clones of templates by default
+
+  * remove legacy vm_monitor_command
+
+  * start: always stop an existing $vmid.scope
+
+  * implement cloudinit support
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 22 Mar 2018 09:24:08 +0100
+
+qemu-server (5.0-23) unstable; urgency=medium
+
+  * fix migrate cache size parameter for qemu 2.11
+
+  * typo fixes in migrate task log
+
+  * depend on pve-qemu-kvm >= 2.9.1-9
+
+  * allow virtio-scsi+iothread controller hot-unplug
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 23 Feb 2018 13:21:08 +0100
+
+qemu-server (5.0-22) unstable; urgency=medium
+
+  * fix #1664: nbd mirror: remove socat tunnel now that it is not required
+    anymore to avoid a 30s inactivity timeout
+
+  * fix #1569: add shared flag to disks
+
+  * fix #1662: make the 'snapshot' disk parameter work again
+
+  * correct 'snapshot' flag description
+
+  * CPU types: add EPYC and EPYC-IBPB
+
+  * forward returned errors from guest-agent commands
+
+  * add new guest-agent commands and add commands as separate api calls
+
+  * add agent flag to vm status api call
+
+  * clone/restore: make the smbios UUID unique if --unique is used
+
+  * add serial:1 to vm-status when config has a serial device configured
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 21 Feb 2018 09:56:08 +0100
+
+qemu-server (5.0-21) unstable; urgency=medium
+
+  * fix a case where with the upcoming introduction of sub-commands the spice
+    ticket could be read from a file rather than received via stdin
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 22 Jan 2018 15:13:23 +0100
+
+qemu-server (5.0-20) unstable; urgency=medium
+
+  * added spec-ctrl flag to cpu 'flags' property
+
+  * added -IBRS cpu type variants
+
+  * added Skylake-Server cpu type
+
+  * added --pretty option to 'qm showcmd'
+
+  * increase start timeout when hugepages are enabled to compensate for long
+    allocation times
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 16 Jan 2018 14:26:30 +0100
+
+qemu-server (5.0-19) unstable; urgency=medium
+
+  * add 'flags' property to cpu option to allow passing PCID support to VMs
+
+  * fix efi disk format detection
+
+  * use default values from load_defaults() when none is specified in conf
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 9 Jan 2018 15:49:35 +0100
+
+qemu-server (5.0-18) unstable; urgency=medium
+
+  * fix #1570: fix template backup with pigz
+
+  * fix #1471: change keyboard default to undef
+
+  * fix efi disks in raw mode not being fully writable
+
+  * qm terminal: add --escape option to change or disable the escape key
+
+  * enable vncproxy with vncterm for serial ports
+
+  * add termproxy api call
+
+  * stop adding the same disk as unused multiple times when they are reachable
+    through multiple storage definitions
+
+  * check if the guest agent actually runs before a fsfreeze-freeze/thaw
+
+  * update ostype documentation
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 13 Dec 2017 14:56:59 +0100
+
+qemu-server (5.0-17) unstable; urgency=medium
+
+  * correct cpuunits range
+
+  * check if base volumes are unused before deleting a template
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 17 Oct 2017 14:58:00 +0200
+
+qemu-server (5.0-16) unstable; urgency=medium
+
+  * add new qm command 'importovf', to create VMs from an OVF manifest
+
+  * snapshot: use explicitly configured vmstate storage
+
+  * config: add vmstatestorage option
+
+  * VM.Snapshot.Rollback privilege added
+
+  * migration : enable mtunnel for insecure migration
+
+  * ovmf: deprecate old legay ovmf image and refactor
+
+  * improve efidisk creation
+
+  * efidisk: do not hard code efivar base image size
+
+  * fix #1441: do not unplug controllers when the mirroring is finished
+
+  * do not overwrite global signal handlers
+
+  * update_vm: sort logged parameters
+
+  * remove legacy sparsecp
+
+  * remove unused obsolete vmtar
+
+  * fix #1125: check for KVM support before starting VM
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 5 Oct 2017 11:17:26 +0200
+
+qemu-server (5.0-15) unstable; urgency=medium
+
+  * reduce migration downtime
+
+  * fix freezing logic when saving vm states
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 07 Aug 2017 10:46:33 +0200
+
+qemu-server (5.0-14) unstable; urgency=medium
+
+  * fix disk throttle parameters
+
+  * improve compatibility when live-migrating from pve-4
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 17 Jul 2017 11:17:53 +0200
+
+qemu-server (5.0-13) unstable; urgency=medium
+
+  * Fix #1417: make sure the target storage allows disk images before importing
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 13 Jul 2017 06:48:43 +0200
+
+qemu-server (5.0-12) unstable; urgency=medium
+
+  * Use default values when memory is not set in vm.conf when migrating
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 03 Jul 2017 14:39:25 +0200
+
+qemu-server (5.0-11) unstable; urgency=medium
+
+  * Fix #1417: properly check for 'images' content type when allocating disks
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 30 Jun 2017 09:33:17 +0200
+
+qemu-server (5.0-10) unstable; urgency=medium
+
+  * don't use cirrus by default for sane OS'
+
+  * replication: remove guest states to ensure no old states are exists
+
+  * allow disks on shared storages on replicated VMs
+
+  * refuse to add non-replicatable disks to replicating VMs
+
+  * config: has_feature() take default for backup into account
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 28 Jun 2017 13:26:38 +0200
+
+qemu-server (5.0-9) unstable; urgency=medium
+
+  * migrate: use 'mtunnel' from pvecm
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 23 Jun 2017 11:01:15 +0200
+
+qemu-server (5.0-8) unstable; urgency=medium
+
+  * migrate: pass the with_snapshots parameter
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 22 Jun 2017 12:58:33 +0200
+
+qemu-server (5.0-7) unstable; urgency=medium
+
+  * PVE/QemuMigrate.pm: use new replication job helpers from AbstractMigrate
+
+  * Change target in replication-state when replication direction is switched
+
+  * PVE/QemuMigrate.pm: use replication job, transfer replication state
+
+  * add regression tests for get_replicatable_volumes
+
+  * get_replicatable_volumes: fix CDROM and local file/device handling
+
+  * get_replicatable_volumes: add unused volumes
+
+  * get_replicatable_volumes: skip volumes if we do not 'own' them
+
+  * PVE::QemuServer::foreach_volid - pass $attr hash to callback
+
+  * get_replicatable_volumes: skip volumes on shared storage
+
+  * PVE/API2/Qemu.pm: aquire guest_migration_lock inside worker
+
+  * Add a migration lock to avoid a replication on rollback-time
+
+  * change from dpkg-deb to dpkg-buildpackage
+
+  * fix #1405: sort pci ids by functions
+
+  * Add new qm command 'importdisk' to import external disk images
+
+  * migration: implement insecure offline migration
+
+  * check also pending changes when reverting/deleting
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 22 Jun 2017 08:50:45 +0200
+
+qemu-server (5.0-6) unstable; urgency=medium
+
+  * fix burst length parameter names and pass them to qemu
+
+  * fix #1229: more explicit spice port allocation
+
+  * migrate: acquire guest_migration_lock during migration
+
+  * do not allow destroy if there are replication jobs
+
+  * use new PVE::ReplicationConfig class
+
+  * improve error on '{full, linked} clone not available' error
+
+  * Fix #1384: add missing decrement to calculation of socket-id
+
+  * migrate: pass ssh_info to storage_migrate
+
+  * tests: fix broken snapshot create tests
+
+  * tests: fix broken snapshot delete tests
+
+  * use ReuseAddr for vncproxy
+
+  * Fix #1361: create disk: stricter parsing of storage:size
+
+  * PVE::QemuServer::create_disks - run code inside eval
+
+  * implement get_replicatable_volumes
+
+  * add description of read/writes statistics in vzdump output
+
+  *  start vncproxy worker in the background
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 31 May 2017 09:21:27 +0200
+
+qemu-server (5.0-5) unstable; urgency=medium
+
+  * added rerror option to scsi drives
+
+  * added storage replication settings
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 28 Apr 2017 14:02:08 +0200
+
+qemu-server (5.0-4) unstable; urgency=medium
+
+  * fix target storage availability check for live migration with local
+    storage
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 21 Apr 2017 12:05:58 +0200
+
+qemu-server (5.0-3) unstable; urgency=medium
+
+  * fix vnc connections showing false errors
+
+  * fix #1338: handle writer count limit in live migration with local disks
+    with qemu 2.9
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 21 Apr 2017 11:47:07 +0200
+
+qemu-server (5.0-2) unstable; urgency=medium
+
+  * fix drive mirror readyness check
+
+  * fix uninitialized warning when deleting unset VM option
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 10 Apr 2017 16:27:59 +0200
+
+qemu-server (5.0-1) unstable; urgency=medium
+
+  * bump version for stretch
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 13 Mar 2017 11:59:35 +0100
+
+qemu-server (4.0-109) unstable; urgency=medium
+
+  * drop netcat6 dependency
+
+  * fix a case where VMs refuse to start with scsi disk ids >= 7
+
+  * add skylake to cpu models
+
+  * improve error messages
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 13 Mar 2017 11:56:14 +0100
+
+qemu-server (4.0-109) unstable; urgency=medium
+
+  * schema updates
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 09 Feb 2017 11:40:53 +0100
+
+qemu-server (4.0-108) unstable; urgency=medium
+
+  * #1260: convert moved template disk to base
+
+  * change TLS cipher suite to HIGH for spiceterm
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 31 Jan 2017 13:54:42 +0100
+
+qemu-server (4.0-107) unstable; urgency=medium
+
+  * add dependency on libpve-guest-common-perl
+
+  * add dependency on libpve-common-perl
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 25 Jan 2017 09:47:09 +0100
+
+qemu-server (4.0-106) unstable; urgency=medium
+
+  * only use scsi-block with explicit opt-in
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 25 Jan 2017 09:19:20 +0100
+
+qemu-server (4.0-105) unstable; urgency=medium
+
+  * use new PVE::Storage::check_volume_access()
+
+  * Set zero $size and continue if volume_resize() returns false
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 19 Jan 2017 09:19:45 +0100
+
+qemu-server (4.0-104) unstable; urgency=medium
+
+  * add setup_environment hook to CLIHandler classes
+
+  * cleanup: drop superfluous condition in assignment
+
+  * add romfile option to hostpci
+
+  * add with-local-disks option for live storage migration
+
+  * drive-mirror: bump timeout to 5s, add 30s inactivity timeout
+
+  * live clone_vm: suspend or freezefs before block-job-cancel
+
+  * add socat and unix socket for storage migration
+
+  * add live storage migration with vm migration
+
+  * clone live vm : add support for multiple jobs
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 12 Jan 2017 14:15:01 +0100
+
+qemu-server (4.0-103) unstable; urgency=medium
+
+  * destroy_vm: allow vdisk_free to fail
+
+  * Display volume size in log when doing a volume backup
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 22 Dec 2016 12:40:40 +0100
+
+qemu-server (4.0-102) unstable; urgency=medium
+
+  * avoid "No balloon device has been activated" warnings in vmstatus
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 20 Dec 2016 10:12:55 +0100
+
+qemu-server (4.0-101) unstable; urgency=medium
+
+  * allow migration of local qcow2 snapshots
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 5 Dec 2016 12:38:54 +0100
+
+qemu-server (4.0-100) unstable; urgency=medium
+
+  * allow insecure migrations from older qemu-servers
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 02 Dec 2016 18:50:54 +0100
+
+qemu-server (4.0-99) unstable; urgency=medium
+
+  * qm agent: remove 'guest-' prefix from commands
+
+  * qm agent: pass command as second required argument
+
+  * qm agent: add output formatter
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 01 Dec 2016 07:58:34 +0100
+
+qemu-server (4.0-98) unstable; urgency=medium
+
+  * Add "qm agent" command
+
+  * increase timeout for guest-fsfreeze-freeze
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 30 Nov 2016 12:31:36 +0100
+
+qemu-server (4.0-97) unstable; urgency=medium
+
+  * Add entry for windows 10 and 2016 support
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 29 Nov 2016 09:09:23 +0100
+
+qemu-server (4.0-96) unstable; urgency=medium
+
+  * restrict monitor API to Sys.Modify for most commands
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 23 Nov 2016 10:02:37 +0100
+
+qemu-server (4.0-95) unstable; urgency=medium
+
+  * vm_shutdown: request 'stopped' state for HA enabled VMs
+
+  * use ha-manager 'stopped' state instead of 'disabled'
+
+  * switch to 'ha-manager set' (instead of 'ha-manager start/stop')
+
+  * vmstate snapshot: activate|deactivate volume
+
+  * qemu_volume_snapshot_delete : fix krbd snapshot delete
+
+  * VZDump/QemuServer: set bless class correctly
+
+  * cleanup windows version handling and hyperv enlightments
+
+  * remove unnecessary format_description properties
+
+  * register new standard option 'pve-qm-image-format'
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 23 Nov 2016 08:11:08 +0100
+
+qemu-server (4.0-94) unstable; urgency=medium
+
+  * fix docs for iops/bps_max_length throttling options
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 03 Nov 2016 12:53:44 +0100
+
+qemu-server (4.0-93) unstable; urgency=medium
+
+  * Close #1195: support iops/bps_max_length throttling options
+
+  * fix a perl warning when failing to parse a new drive string
+
+  * fix a warning: discard is not a number
+
+  * fix #1177: allow dedicated migration network
+
+  * change default value for cpuunits to 1024
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 03 Nov 2016 10:26:03 +0100
+
+qemu-server (4.0-92) unstable; urgency=medium
+
+  * Close #351: add more info to backup log
+
+  * add qm listsnapshot call
+
+  * snapshot_list: add bash completion for vmid
+
+  * Fix #1174: remove pve-qm-drive
+
+  * enable drive-mirror with iothread for qemu 2.7 v2
+
+  * add get_running_qemu_version
+
+  * cpu hotplug : add new cpu hotplug method for qemu 2.7
+
+  * cpu hotplug : add coldplugged cpu to qemu command line
+
+  * cpu hotplug : add print_cpu_device
+
+  * numaX : use cpus option multiple time if cpulist
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 21 Oct 2016 09:13:39 +0200
+
+qemu-server (4.0-91) unstable; urgency=medium
+
+  * fix #1131: activate volume before copying efidisk
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 07 Oct 2016 08:21:19 +0200
+
+qemu-server (4.0-90) unstable; urgency=medium
+
+  * fix #1111: qm showcmd wrong escape sequence
+
+  * Avoid to parse empty property string
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 05 Oct 2016 07:13:33 +0200
+
+qemu-server (4.0-89) unstable; urgency=medium
+
+  * fix manual page (use efidisk0 instead of efidisk[N])
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 29 Sep 2016 12:21:07 +0200
+
+qemu-server (4.0-88) unstable; urgency=medium
+
+  * restore: better error handling for vdisk deletion
+
+  * forbid migration of template with local base image
+
+  * forbid restore into existing template
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 16 Sep 2016 07:49:45 +0200
+
+qemu-server (4.0-87) unstable; urgency=medium
+
+  * add seabios bootsplash and use it
+
+  * add efidisk0 to config, use efidisk0 for efivars
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 08 Sep 2016 12:34:23 +0200
+
+qemu-server (4.0-86) unstable; urgency=medium
+
+  * hostpci: bring back multifunction pass-through shortcut
+
+  * disable drive-mirror when iothread is enabled
+
+  * hugepages: map numa node IDs to host and guest correctly
+
+  * hugepages: use hostnodes value as numanode for topology
+
+  * qemu-img convert : use default cache=unsafe instead writeback
+
+  * Fix #1057: make protection a fast-plug option
+
+  * add lock check for move_disk API call
+
+  * deactivate new volumes after clone to other node
+
+  * pass datacenter.cfg's mac_prefix to random_ether_addr
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 29 Aug 2016 10:11:07 +0200
+
+qemu-server (4.0-85) unstable; urgency=medium
+
+  * Fix #1051: typo: vpcus -> vcpus - so non-root users can change vcpus again
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 11 Jul 2016 14:46:43 +0200
+
+qemu-server (4.0-84) unstable; urgency=medium
+
+  * fix #1046: add non-snapshotted disks as unused
+
+  * fix #1040: warn early about moving a snapshotted disk
+
+  * disable usb hotplug for now
+
+  * remove old move disk snapshot check
+
+  * improve errors when trying to migrate disks with snapshots
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 11 Jul 2016 11:50:01 +0200
+
+qemu-server (4.0-83) unstable; urgency=medium
+
+  * Add hugepages option
+
+  * Refactor various parts out of QemuServer
+
+  * Include USB devices in vm_devices_list
+
+  * Add usb hotplugging
+
+  * Fix syntax in pve-q35.cfg
+
+  * Fix #146: add name to backup log
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 22 Jun 2016 11:29:01 +0200
+
+qemu-server (4.0-82) unstable; urgency=medium
+
+  * add dependency on DBus
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 20 Jun 2016 11:48:45 +0200
+
+qemu-server (4.0-81) unstable; urgency=medium
+
+  * Add LVM and LVMThin to QemuMigration
+
+  * add check for snapshots at migration
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 16 Jun 2016 12:10:48 +0200
+
+qemu-server (4.0-80) unstable; urgency=medium
+
+  * split old style pipe open call
+
+  * fix #1020: remove unnecessary root check for unused disks
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 09 Jun 2016 18:13:03 +0200
+
+qemu-server (4.0-79) unstable; urgency=medium
+
+  * migrate: collect migration tunnel child process (avoid zombies)
+
+  * migrate: use ssh forwarded UNIX socket tunnel
+
+  * migrate: add some more log output
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 03 Jun 2016 12:16:31 +0200
+
+qemu-server (4.0-78) unstable; urgency=medium
+
+  * use enter_systemd_scope instead of systemd-run
+
+  * fix #1010: whitelist options for permissions
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 03 Jun 2016 11:42:25 +0200
+
+qemu-server (4.0-77) unstable; urgency=medium
+
+  * do not ignore hotplug parse errors
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 31 May 2016 12:15:55 +0200
+
+qemu-server (4.0-76) unstable; urgency=medium
+
+  * allow VLAN 1 tag in qemu-kvm vms
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 18 May 2016 11:25:54 +0200
+
+qemu-server (4.0-75) unstable; urgency=medium
+
+  * fix #975, use new keyAlias feature.
+
+  * add --description to systemd scope unit
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 11 May 2016 11:15:56 +0200
+
+qemu-server (4.0-74) unstable; urgency=medium
+
+  * correctly set cpu vendor
+
+  * fix #971: don't activate shared storage in offline migration
+
+  * migrate: check if storage is available
+
+ -- Proxmox Support Team <support@proxmox.com>  Sun, 01 May 2016 09:25:06 +0200
+
+qemu-server (4.0-73) unstable; urgency=medium
+
+  * restore: pass format to vma extract
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 29 Apr 2016 09:03:12 +0200
+
+qemu-server (4.0-72) unstable; urgency=medium
+
+  * vm_start : force systemctl stop if orphan scope exist
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 22 Apr 2016 11:09:52 +0200
+
+qemu-server (4.0-71) unstable; urgency=medium
+
+  * Fix #643: activate volumes before resizing
+
+  * fix #947: reenable disk/cdrom passthrough
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 21 Apr 2016 10:34:42 +0200
+
+qemu-server (4.0-70) unstable; urgency=medium
+
+  * vm_status: return more verbose HA state
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 19 Apr 2016 09:01:24 +0200
+
+qemu-server (4.0-69) unstable; urgency=medium
+
+  * Fix #848: deactivate old volume after clone before deletion
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 13 Apr 2016 08:24:49 +0200
+
+qemu-server (4.0-68) unstable; urgency=medium
+
+  * change shutdown behaviour on suspended vm
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 12 Apr 2016 17:19:20 +0200
+
+qemu-server (4.0-67) unstable; urgency=medium
+
+  * use pve-doc-generator to generate man pages
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 08 Apr 2016 07:37:16 +0200
+
+qemu-server (4.0-66) unstable; urgency=medium
+
+  * use generic property string parser
+
+  * drive schema: allow 'none' again
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 01 Apr 2016 09:33:16 +0200
+
+qemu-server (4.0-65) unstable; urgency=medium
+
+  * cfg: use the 'urlencoded' format for drive model and serial
+
+  * clone: use the zeroinit filter for sparseinit storages
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 21 Mar 2016 09:09:07 +0100
+
+qemu-server (4.0-64) unstable; urgency=medium
+
+  * Use AbstractConfig for Qemu
+
+  * fix #909: pass rate to tap_plug()
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 08 Mar 2016 11:43:28 +0100
+
+qemu-server (4.0-63) unstable; urgency=medium
+
+  * only perform scsi inquiry on device nodes
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 27 Feb 2016 10:20:50 +0100
+
+qemu-server (4.0-62) unstable; urgency=medium
+
+  * fix undefined value when starting a q35 machine VM
+
+  * kvm_user_version: update code to use our framework
+
+  * Refactor has_feature
+  
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 26 Feb 2016 17:02:34 +0100
+
+qemu-server (4.0-61) unstable; urgency=medium
+
+  * clone_vm : only deactivate sources volume if source vm if offline
+
+  * Refactor snapshot_create to match LXC.pm
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 25 Feb 2016 08:48:59 +0100
+
+qemu-server (4.0-60) unstable; urgency=medium
+
+  * change check for write-zeros
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 24 Feb 2016 17:19:12 +0100
+
+qemu-server (4.0-59) unstable; urgency=medium
+
+  * qemu_machine_pxe : return $machine if no pxe
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 22 Feb 2016 17:37:11 +0100
+
+qemu-server (4.0-58) unstable; urgency=medium
+
+  * deactivate volumes if vm start command fails
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 20 Feb 2016 10:26:28 +0100
+
+qemu-server (4.0-57) unstable; urgency=medium
+
+  * delete ram state files when restoring a backup
+
+  * Refactor snapshot code
+
+  * disable vnc server and add -nographic is no vga card is present
+
+  * passthrough : reenable hyperv and add hv_vendor_id for windows
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 18 Feb 2016 12:47:51 +0100
+
+qemu-server (4.0-56) unstable; urgency=medium
+
+  * If we freeze the fs with the Qemu-Guest-Agent test if QGA is running.
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 15 Feb 2016 12:51:19 +0100
+
+qemu-server (4.0-55) unstable; urgency=medium
+
+  * improve usb config parsing
+
+  * Refactor update_config_nolock -> write_config
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 12 Feb 2016 12:07:56 +0100
+
+qemu-server (4.0-54) unstable; urgency=medium
+
+  * restore: deal with new backup=0 property string
+
+  * add usb3 option for usb-devices
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 10 Feb 2016 17:49:19 +0100
+
+qemu-server (4.0-53) unstable; urgency=medium
+
+  * pass $skiplock all the way through to destroy_vm
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 08 Feb 2016 11:53:03 +0100
+
+qemu-server (4.0-52) unstable; urgency=medium
+
+  * close tunnel after migration is finish.
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 02 Feb 2016 18:16:47 +0100
+
+qemu-server (4.0-51) unstable; urgency=medium
+
+  * Fix #878: disk-size format
+
+  *  Fix #879: exclusion of disk for backup
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 29 Jan 2016 10:04:41 +0100
+
+qemu-server (4.0-50) unstable; urgency=medium
+
+  * add hidden option to cpu type
+
+  * fix PVE::HA use clause so HA resources get registered
+
+  * Create firewall dir on VM restore
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 26 Jan 2016 16:57:43 +0100
+
+qemu-server (4.0-49) unstable; urgency=medium
+
+  * increase version to update test environment
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 26 Jan 2016 12:50:07 +0100
+
+qemu-server (4.0-48) unstable; urgency=medium
+
+  * use safe_string_ne for trunks
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 18 Jan 2016 16:58:23 +0100
+
+qemu-server (4.0-47) unstable; urgency=medium
+
+  * add support for network trunks
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 15 Jan 2016 17:27:32 +0100
+
+qemu-server (4.0-46) unstable; urgency=medium
+
+  * Closes #787: add Haswell-noTSX and Broadwell-noTSX cpu types
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 13 Jan 2016 16:42:05 +0100
+
+qemu-server (4.0-45) unstable; urgency=medium
+
+  * io throttle: pass pool parameters (*_max)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 13 Jan 2016 06:17:52 +0100
+
+qemu-server (4.0-44) unstable; urgency=medium
+
+  * ovmf : don't pass x-vga to vfio-pci
+
+  * check for quorum when starting a VM
+
+ -- Proxmox Support Team <support@proxmox.com>  Sun, 10 Jan 2016 15:11:43 +0100
+
+qemu-server (4.0-43) unstable; urgency=medium
+
+  * disable hyper-v enlightment when xvga is enabled
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 04 Jan 2016 06:26:31 +0100
+
+qemu-server (4.0-42) unstable; urgency=medium
+
+  * add detect_zeroes option
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 18 Dec 2015 09:20:18 +0100
+
+qemu-server (4.0-41) unstable; urgency=medium
+
+  * add new option to select BIOS (--bios <seabios|ovmf>)
+
+  * fix bug #841: replace get_used_paths with is_volume_in_use
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 10 Dec 2015 11:15:23 +0100
+
+qemu-server (4.0-40) unstable; urgency=medium
+
+  * qm: Add VMID auto completion to some commands
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 09 Dec 2015 12:22:25 +0100
+
+qemu-server (4.0-39) unstable; urgency=medium
+
+  * fix bug #828: activate disks before hotplugging them
+
+  * fix bug #783: set KillMode=none, so that systemd don't kill
+    them at shutdown
+
+  * reenable steal time
+
+  * backup/restore firewall config with vzdump
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 24 Nov 2015 16:50:11 +0100
+
+qemu-server (4.0-38) unstable; urgency=medium
+
+  * Don't treat serial devices as a local resource if they
+    point to a socket.
+
+  * qemu_img_convert: activate source volume
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 13 Nov 2015 07:02:01 +0100
+
+qemu-server (4.0-37) unstable; urgency=medium
+
+  * add pve-bridge-hotplug script
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 06 Nov 2015 16:24:44 +0100
+
+qemu-server (4.0-36) unstable; urgency=medium
+
+  * use qom-get to check if old pxe network rom file are used
+
+  * migration: improve ipv6 case
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 06 Nov 2015 07:56:14 +0100
+
+qemu-server (4.0-35) unstable; urgency=medium
+
+  * clone: use a fullclone hash instead of $drive->{full}
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 30 Oct 2015 07:06:47 +0100
+
+qemu-server (4.0-34) unstable; urgency=medium
+
+  * use old netdevice bios files for older machine types (<= 2.4)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 28 Oct 2015 09:08:49 +0100
+
+qemu-server (4.0-31) unstable; urgency=medium
+
+  * migrate : add nocheck for resume
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 15 Oct 2015 12:41:43 +0200
+
+qemu-server (4.0-30) unstable; urgency=medium
+
+  * qmrestore: implement bash completion
+
+  * create: add better check for unused IDs
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 05 Oct 2015 13:13:07 +0200
+
+qemu-server (4.0-29) unstable; urgency=medium
+
+  * support serial numbers and models for disks
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 30 Sep 2015 10:56:30 +0200
+
+qemu-server (4.0-28) unstable; urgency=medium
+
+  *  disable kvm_steal_time, because it's currently buggy with live migration
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 29 Sep 2015 07:14:44 +0200
+
+qemu-server (4.0-27) unstable; urgency=medium
+
+  * allow to change boot order with VM.Config.Options privileges
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 26 Sep 2015 11:07:11 +0200
+
+qemu-server (4.0-26) unstable; urgency=medium
+
+  * migration: disable compress (already default)
+
+  * migration: enable xbzrle
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 25 Sep 2015 17:59:30 +0200
+
+qemu-server (4.0-25) unstable; urgency=medium
+
+  * fix kvm version parser for CVE stable releases
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 23 Sep 2015 11:48:09 +0200
+
+qemu-server (4.0-24) unstable; urgency=medium
+
+  * improve VM protection mode
+
+  * pci passthough : make vfio default
+
+  * fix error message: allocate to much v-CPUs
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 21 Sep 2015 12:28:19 +0200
+
+qemu-server (4.0-23) unstable; urgency=medium
+
+  * destroy: avoid warning about undefined 'protection' value
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 10 Sep 2015 09:38:30 +0200
+
+qemu-server (4.0-22) unstable; urgency=medium
+
+  * add possibility to restore backup on rbd in krbd mode
+
+  *  add krbd support to online snapshot
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 09 Sep 2015 07:55:31 +0200
+
+qemu-server (4.0-21) unstable; urgency=medium
+
+  * qm: implement bash completion
+
+  * add VM protection mode
+
+  * fix move_disk on RBD
+
+  * add HA resources check before destroying a VM
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 08 Sep 2015 10:51:05 +0200
+
+qemu-server (4.0-20) unstable; urgency=medium
+
+  * fix start kvm with os type 'other'
+
+  * spice console: fix 'uninitialized value in concat' due to unnamed VM
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 28 Aug 2015 11:39:52 +0200
+
+qemu-server (4.0-19) unstable; urgency=medium
+
+  * clone: also copy vm firewall config file
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 25 Aug 2015 06:50:04 +0200
+
+qemu-server (4.0-18) unstable; urgency=medium
+
+  * fix bug #688: if vm is not owner of this disk remove from config
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 20 Aug 2015 12:30:52 +0200
+
+qemu-server (4.0-17) unstable; urgency=medium
+
+  * fix bug #603: vmid.fw file not deleted
+
+  * fix bug #517: improve error message
+
+  * adapt /config and /pending API calls to force-delete
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 19 Aug 2015 15:44:53 +0200
+
+qemu-server (4.0-16) unstable; urgency=medium
+
+  * remove vm access permissions after destroy
+
+  * pending-delete: remember force-deletes
+
+  * correctly handle empty description in pending section
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 14 Aug 2015 08:09:44 +0200
+
+qemu-server (4.0-15) unstable; urgency=medium
+
+  * Fixed wrong UUID in Qemu VZDump backup
+
+  * add memory_unplug support V2
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 30 Jul 2015 11:32:51 +0200
+
+qemu-server (4.0-14) unstable; urgency=medium
+
+  * fixed bug 662: wrong subroutine for parsing startup order
+
+  * cpuflags : don't enforce with tcg mode
+
+  * cpuflags : remove enforce for cpumodel=host
+
+  * cpuflags : remove -rdtscp for Opteron cpu models
+
+  * vzdump : abord backup if disk have iothread enabled
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 27 Jul 2015 13:24:31 +0200
+
+qemu-server (4.0-13) unstable; urgency=medium
+
+  * drive-mirror: now allow interrupts at the scanning bitmap phase
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 01 Jul 2015 06:40:52 +0200
+
+qemu-server (4.0-12) unstable; urgency=medium
+
+  * remove outdated host_device format
+
+  * parse_drive: do not overwrite configured format
+
+  * fix aio O_DIRECT check for cdrom drives
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 10 Jun 2015 10:32:09 +0200
+
+qemu-server (4.0-11) unstable; urgency=medium
+
+  * activate-noawait pve-api-updates
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 01 Jun 2015 12:36:15 +0200
+
+qemu-server (4.0-10) unstable; urgency=medium
+
+  * implement cgroups through systemd-run
+
+  * implement hotplug for cpuunits
+
+  * remove old openvz fairscheduler code
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 29 May 2015 08:24:33 +0200
+
+qemu-server (4.0-9) unstable; urgency=medium
+
+  * qmp drive-mirror : set big timeout
+
+  * qemu-mirror : block job complete : use ready flag
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 12 May 2015 08:19:38 +0200
+
+qemu-server (4.0-8) unstable; urgency=medium
+
+  * trigger pve-api-updates event
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 05 May 2015 14:57:55 +0200
+
+qemu-server (4.0-7) unstable; urgency=medium
+
+  * cleanup: use new standard option 'pve-startup-order'
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 22 Apr 2015 10:04:04 +0200
+
+qemu-server (4.0-6) unstable; urgency=medium
+
+  * fix ha resource names
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 17 Apr 2015 13:11:12 +0200
+
+qemu-server (4.0-5) unstable; urgency=medium
+
+  * use new pve-ha-manager
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 27 Mar 2015 12:48:41 +0100
+
+qemu-server (4.0-4) unstable; urgency=medium
+
+  * add qemu cpu flags optimisations for kernel 3.10
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 17 Mar 2015 08:58:56 +0100
+
+qemu-server (4.0-3) unstable; urgency=medium
+
+  * vmstatus: use vcpus if defined
+
+  * balloon: use qom-get for guest balloon statistics
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 09 Mar 2015 08:22:47 +0100
+
+qemu-server (4.0-2) unstable; urgency=medium
+
+  * drive_add: escape \ character
+
+  * bugfix: allow manual balloning if shares = 0
+  
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 06 Mar 2015 10:21:52 +0100
+
+qemu-server (4.0-1) unstable; urgency=medium
+
+  * updated for debian jessie
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 27 Feb 2015 13:00:56 +0100
+
+qemu-server (3.3-20) unstable; urgency=low
+
+  * correctly set an remove lock (fix "qm unlock")
+
+ -- Proxmox Support Team <support@proxmox.com>  Sun, 15 Feb 2015 09:05:40 +0100
+
+qemu-server (3.3-19) unstable; urgency=low
+
+  * commit pending values when changing CDROM
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 14 Feb 2015 09:24:03 +0100
+
+qemu-server (3.3-18) unstable; urgency=low
+
+  * bugfix : add missing queues nic option in print_net
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 13 Feb 2015 09:05:21 +0100
+
+qemu-server (3.3-17) unstable; urgency=low
+
+  * fix CDROM hotplug
+  
+  * This fix hotplug for devices behind bridges
+  
+  * check possibility to rollback a snapshot early
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 12 Feb 2015 08:19:02 +0100
+
+qemu-server (3.3-16) unstable; urgency=low
+
+  * QemuServer: fix wrong binding of pci root ports, bridges or switches
+    to vfio
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 11 Feb 2015 06:32:14 +0100
+
+qemu-server (3.3-15) unstable; urgency=low
+
+  * code cleanup: add foreach_dimm sub
+  
+  * hotplug: memory hotplug option is not hotpluggable
+  
+  * fix bug 597: hotplug fix
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 09 Feb 2015 07:05:05 +0100
+
+qemu-server (3.3-14) unstable; urgency=low
+
+  * include memory hotplug patch
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 28 Jan 2015 07:11:10 +0100
+
+qemu-server (3.3-13) unstable; urgency=low
+
+  * hotplug config: allow to enable specific features
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 27 Jan 2015 12:39:21 +0100
+
+qemu-server (3.3-12) unstable; urgency=low
+
+  * add new vcpus option
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 23 Jan 2015 08:04:44 +0100
+
+qemu-server (3.3-11) unstable; urgency=low
+
+  * enable hotplug by default
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 21 Jan 2015 08:53:10 +0100
+
+qemu-server (3.3-10) unstable; urgency=low
+
+  * Support additional e1000 variants for VM machines
+  
+  * Add link_down flag to network config
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 20 Jan 2015 07:15:48 +0100
+
+qemu-server (3.3-9) unstable; urgency=low
+
+  * pending api : fix parsing 0 value
+
+  * fix test for ballon hotplug
+
+  * set boot strict=on to prevent booting from not listed boot devices
+  
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 15 Jan 2015 06:23:10 +0100
+
+qemu-server (3.3-8) unstable; urgency=low
+
+  * new 'pending changes' API
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 08 Jan 2015 13:32:46 +0100
+
+qemu-server (3.3-7) unstable; urgency=low
+
+  * vzdump: use qga freeze in vzdump in snapshot mode
+  
+  * add custom numa topology support
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 22 Dec 2014 17:24:24 +0100
+
+qemu-server (3.3-6) unstable; urgency=low
+
+  * API change: snapshot_create - remove unused freezefs flag.
+  
+  * snapshot_create: call fsfreeze if agent flag is set
+
+  * qmpclient: use guest-sync-delimited
+  
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 04 Dec 2014 12:34:50 +0100
+
+qemu-server (3.3-5) unstable; urgency=low
+
+  * drive-mirror: cleanups, avoid division by zero bug
+
+  * shutdown by Qemu Guest Agent if the agent flag is set
+
+  * savevm-end : wait that savevm is finished
+   
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 01 Dec 2014 09:31:17 +0100
+
+qemu-server (3.3-4) unstable; urgency=low
+
+  * serial: allow to pass arbitrary device names
+  
+  * Add check if host has enough real CPUs for starting VM
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 24 Nov 2014 07:42:10 +0100
+
+qemu-server (3.3-3) unstable; urgency=low
+
+  * drive-mirror: further improvments
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 10 Nov 2014 06:32:04 +0100
+
+qemu-server (3.3-2) unstable; urgency=low
+
+  * drive-mirror: wait that busy eq false before block-job-complete
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 07 Nov 2014 15:35:55 +0100
+
+qemu-server (3.3-1) unstable; urgency=low
+
+  * enable write zeroes optimisations
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 13 Oct 2014 10:35:49 +0200
+
+qemu-server (3.1-35) unstable; urgency=low
+
+  * fix bug #542: return VMID as integer
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 17 Sep 2014 15:52:34 +0200
+
+qemu-server (3.1-34) unstable; urgency=low
+
+  * hotplug: allow scsi and virtio-scsi disk hotplug|unplug
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 01 Sep 2014 11:35:49 +0200
+
+qemu-server (3.1-33) unstable; urgency=low
+
+  * clone_vm: auto generate new uuid
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 26 Aug 2014 09:23:58 +0200
+
+qemu-server (3.1-32) unstable; urgency=low
+
+  *  add Broadwell cpu model
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 20 Aug 2014 12:21:08 +0200
+
+qemu-server (3.1-31) unstable; urgency=low
+
+  * fix bug 529: fix virtio-serial when using q35 machines
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 13 Aug 2014 06:17:08 +0200
+
+qemu-server (3.1-30) unstable; urgency=low
+
+  * bump max hostpci to 4
+  
+  * set vga=none if x-vga passthrough is enabled
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 06 Aug 2014 09:41:36 +0200
+
+qemu-server (3.1-29) unstable; urgency=low
+
+  * vm_stop: do not use ha commands if $migratedfrom is set
+  
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 29 Jul 2014 06:53:05 +0200
+
+qemu-server (3.1-28) unstable; urgency=low
+
+  * disable kvm cpu signature if x-vga is enabled
+  
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 24 Jul 2014 06:52:25 +0200
+
+qemu-server (3.1-27) unstable; urgency=low
+
+  * pci passthrough: Reset device only if has_fl_reset is defined
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 23 Jul 2014 06:11:49 +0200
+
+qemu-server (3.1-26) unstable; urgency=low
+
+  * enable linked clones from snapshots (ceph)
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 17 Jul 2014 09:28:47 +0200
+
+qemu-server (3.1-25) unstable; urgency=low
+
+  * allow resize of virtio windows boot disk (virtio-win-0.1-74 have 
+    fixed the resize bug)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 16 Jul 2014 12:48:03 +0200
+
+qemu-server (3.1-24) unstable; urgency=low
+
+  * new option smbios1: specify SMBIOS type 1 fields (uuid, ...)
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 26 Jun 2014 11:13:27 +0200
+
+qemu-server (3.1-23) unstable; urgency=low
+
+  * vncproxy: remove check if VM is running
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 25 Jun 2014 09:56:02 +0200
+
+qemu-server (3.1-22) unstable; urgency=low
+
+  * hostpci: add pci multifunction support
+  
+  * hostpci: add pcie and x-vga passthrough
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 25 Jun 2014 09:31:30 +0200
+
+qemu-server (3.1-21) unstable; urgency=low
+
+  * protect websocket API with vncticket
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 24 Jun 2014 17:43:25 +0200
+
+qemu-server (3.1-20) unstable; urgency=low
+
+  * vncwebsocket: do not proxy connection (not required)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 18 Jun 2014 12:45:39 +0200
+
+qemu-server (3.1-19) unstable; urgency=low
+
+  * do not depend on novnc-pve package (use new HTTPServer feature instead)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 18 Jun 2014 11:04:48 +0200
+
+qemu-server (3.1-18) unstable; urgency=low
+
+  * depend on novnc-pve package
+  
+  * support webockets for VNC console
+  
+  * migration : add setup state
+
+  * add virtio-net multiqueue support
+  
+  * add firewall option to qemu network interface
+  
+  * add initiator-name to iscsi drives if configured
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 17 Jun 2014 09:00:03 +0200
+
+qemu-server (3.1-17) unstable; urgency=low
+
+  * depend on pve-firewall package
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 06 May 2014 11:28:26 +0200
+
+qemu-server (3.1-16) unstable; urgency=low
+
+  * fix bug #502: allow creation of empty vma archives
+  
+  * fix bug #510: move_disk - don't delete disk if used in a previous snasphot
+
+  * qmrestore: removed short timeout
+  
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 17 Apr 2014 09:29:26 +0200
+
+qemu-server (3.1-15) unstable; urgency=low
+
+  * correctly disable unwanted migrate features (xbzrle).
+  
+  * QemuMigrate: print migration xbzrle if enabled
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 10 Feb 2014 08:06:29 +0100
+
+qemu-server (3.1-14) unstable; urgency=low
+  
+  * Add title of VM to Spice Client
+
+  * deactivate volume after move_disk
+  
+  * add cpu_hotplug (and maxcpus config)
+  
+  * migration : enable auto-converge capability
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 29 Jan 2014 06:49:16 +0100
+
+qemu-server (3.1-13) unstable; urgency=low
+
+  * pci passthrough: new option to disable device ROM (rombar=off)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 13 Dec 2013 11:45:46 +0100
+
+qemu-server (3.1-12) unstable; urgency=low
+
+  * spiceproxy: use POST instead of GET
+  
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 10 Dec 2013 10:49:30 +0100
+
+qemu-server (3.1-11) unstable; urgency=low
+
+  * depend on pve-qemu-kvm >= 1.7-1
+  
+  * fix 'qm unlink' command syntax
+  
+  * add 'pvscsi' to the list of scsi controllers (emulate the VMware
+    PVSCSI device)
+
+  * add 'lsi53c810' to the list of scsi controllers (supported on some 
+    very old Windows NT versions)
+
+  * add 'vmxnet3' to the list of available network card models (emulate
+    VMware paravirtualized network card)
+  
+  * add drive option 'discard'
+  
+  * add support for new qemu throttling burst max parameters.
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 03 Dec 2013 10:48:33 +0100
+
+qemu-server (3.1-10) unstable; urgency=low
+
+  * add +lahf_lm flag to kvm64 cpudef
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 29 Nov 2013 09:18:39 +0100
+
+qemu-server (3.1-9) unstable; urgency=low
+  
+  * clone: deactivate volumes after clone to other node
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 19 Nov 2013 08:17:35 +0100
+
+qemu-server (3.1-8) unstable; urgency=low
+
+  * clone: correctly check drive options (avoid feature is not available bug)
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 14 Oct 2013 07:36:26 +0200
+
+qemu-server (3.1-7) unstable; urgency=low
+
+  * spice: add multi-monitors support
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 02 Oct 2013 09:13:23 +0200
+
+qemu-server (3.1-6) unstable; urgency=low
+
+  * use new PVE::Storage::abs_filesystem_path()
+  
+  * use warnings instead of global -w flag
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 01 Oct 2013 12:42:42 +0200
+
+qemu-server (3.1-5) unstable; urgency=low
+
+  * introduce new ostype 'solaris' (run without x2apic).
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 24 Sep 2013 06:55:33 +0200
+
+qemu-server (3.1-4) unstable; urgency=low
+
+  * qemu migrate : only wait for spice server online + eval
+  
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 19 Sep 2013 06:29:39 +0200
+
+qemu-server (3.1-3) unstable; urgency=low
+
+  * speedup restore on glusterfs (do not write zero bytes)
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 17 Sep 2013 09:13:34 +0200
+
+qemu-server (3.1-2) unstable; urgency=low
+
+  * Allow VMAdmin/DatastoreUser to delete disk 
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 05 Sep 2013 07:48:07 +0200
+
+qemu-server (3.1-1) unstable; urgency=low
+
+  * allow pass through of usb parallel devices (--parallel0 /dev/usb/lp0)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 14 Aug 2013 12:20:23 +0200
+
+qemu-server (3.0-30) unstable; urgency=low
+
+  * fix bugs in migration code (wrong qw() usage)
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 12 Aug 2013 09:49:20 +0200
+
+qemu-server (3.0-29) unstable; urgency=low
+
+  * vncproxy: load config from correct node
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 06 Aug 2013 08:15:59 +0200
+
+qemu-server (3.0-28) unstable; urgency=low
+
+  * allow to use a socket for serial devices
+  
+  * implement 'qm terminal' to open terminal via serial device
+  
+  * add ability to run without graphic card ('vga: serial[n]')
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 02 Aug 2013 10:05:35 +0200
+
+qemu-server (3.0-27) unstable; urgency=low
+
+  * add support for unsecure/fast migration (setting in datacenter.cfg)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 26 Jul 2013 11:24:36 +0200
+
+qemu-server (3.0-26) unstable; urgency=low
+
+  * remove spice cert paths (depend on pve-qemu-kvm >= 1.4-16)
+  
+  * implement spice seamless migration
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 23 Jul 2013 10:08:33 +0200
+
+qemu-server (3.0-25) unstable; urgency=low
+
+  * support usb redirection devices for spice (usb[n]: spice)
+  
+  * disable tablet device by default for spice
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 19 Jul 2013 09:38:25 +0200
+
+qemu-server (3.0-24) unstable; urgency=low
+  
+  * spiceproxy API: allow client to choose proxy address
+  
+  * spiceproxy API: read cert subject name directly using Net::SSLeay
+  
+  * spice: use TLS (encrypt whole traffic)
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 18 Jul 2013 08:14:46 +0200
+
+qemu-server (3.0-23) unstable; urgency=low
+
+  * allow to pass SCSI generic devices to guests, for example "scsi0: /dev/sg5"
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 16 Jul 2013 06:49:45 +0200
+
+qemu-server (3.0-22) unstable; urgency=low
+
+  * cpu flags optimization
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 15 Jul 2013 09:14:49 +0200
+
+qemu-server (3.0-21) unstable; urgency=low
+
+  * add support for SPICE
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 26 Jun 2013 13:15:48 +0200
+
+qemu-server (3.0-20) unstable; urgency=low
+
+  * new API to update VM config: this one is fully asynchronous.
+  
+  * snapshot rollback: use pc-i440fx-1.4 as default
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 07 Jun 2013 11:44:16 +0200
+
+qemu-server (3.0-19) unstable; urgency=low
+
+  * config: implement new 'machine' configuration
+  
+  * migrate:  pass --machine parameter to remote 'qm start' command
+
+  * snapshot: store/use 'machine' confifiguration
+  
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 05 Jun 2013 10:27:47 +0200
+
+qemu-server (3.0-18) unstable; urgency=low
+
+  * imlement delete flag for move_disk
+  
+  * API: rename move to move_disk
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 31 May 2013 10:57:50 +0200
+
+qemu-server (3.0-17) unstable; urgency=low
+
+  * implement storage migration ("qm move")
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 29 May 2013 13:01:16 +0200
+
+qemu-server (3.0-16) unstable; urgency=low
+
+  * fix bug 395: correctly handle unused disk with storage alias
+
+  * fix unused disk handling (do not hide unused disks when used with snapshot).
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 28 May 2013 12:23:12 +0200
+
+qemu-server (3.0-15) unstable; urgency=low
+
+  * qemu_img_format : use raw for as default for other storage
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 23 May 2013 11:33:47 +0200
+
+qemu-server (3.0-14) unstable; urgency=low
+
+  * fix bug #389: avoid error if balloon is undefined
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 22 May 2013 07:17:38 +0200
+
+qemu-server (3.0-13) unstable; urgency=low
+
+  * fix bug #391 - restore: test if requested format is supported
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 21 May 2013 12:03:56 +0200
+
+qemu-server (3.0-12) unstable; urgency=low
+
+  * use add_vm_to_pool/remove_vm_from_pool from PVE::AccessControl
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 14 May 2013 12:02:41 +0200
+
+qemu-server (3.0-11) unstable; urgency=low
+
+  * clone disk : keep source volume params
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 14 May 2013 10:18:21 +0200
+
+qemu-server (3.0-10) unstable; urgency=low
+
+  * fix bug #381: use PVE::Tools::next_migrate_port()
+  
+  * clone: check is we can clone to target storage
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 13 May 2013 07:31:47 +0200
+
+qemu-server (3.0-9) unstable; urgency=low
+
+  * restore: do not restore template flag
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 08 May 2013 10:23:49 +0200
+
+qemu-server (3.0-8) unstable; urgency=low
+
+  * qemu_img_format: use 'raw' for lvm
+
+  * drive-mirror : die if stats are empty
+
+  * set long timeout for query-block-jobs
+  
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 07 May 2013 10:19:19 +0200
+
+qemu-server (3.0-7) unstable; urgency=low
+
+  * has_feature: return list of allowed nodes
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 06 May 2013 08:58:35 +0200
+
+qemu-server (3.0-6) unstable; urgency=low
+
+  * fix bug #379 - restore: allow to overwrite existing VMs if user has 
+    VM.Backup permissions
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 03 May 2013 07:53:40 +0200
+
+qemu-server (3.0-5) unstable; urgency=low
+
+  * implement shared file locks
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 25 Apr 2013 11:35:01 +0200
+
+qemu-server (3.0-4) unstable; urgency=low
+
+  * fix bug 377: make qm rescan work properly
+  
+  * avoid endless loop in QMPClient
+  
+  * use vm create permissions for templates
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 24 Apr 2013 07:59:28 +0200
+
+qemu-server (3.0-3) unstable; urgency=low
+
+  * allow sparse restore for sheepdog and rbd
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 18 Apr 2013 06:21:40 +0200
+
+qemu-server (3.0-2) unstable; urgency=low
+
+  * fix warnings in syslog
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 22 Mar 2013 06:25:12 +0100
+
+qemu-server (3.0-1) unstable; urgency=low
+
+  * start 3.0 development
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 05 Mar 2013 11:39:08 +0100
+
+qemu-server (2.3-17) unstable; urgency=low
+
+  * fix backup-cancel timeout
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 01 Mar 2013 10:58:58 +0100
+
+qemu-server (2.3-16) unstable; urgency=low
+
+  * vncproxy (another try): wait max 10s for the socket if it does not
+    exist
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 01 Mar 2013 06:42:36 +0100
+
+qemu-server (2.3-15) unstable; urgency=low
+
+  * revert vncproxy change because it breaks console on remote hosts.
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 28 Feb 2013 12:53:59 +0100
+
+qemu-server (2.3-14) unstable; urgency=low
+
+  * bugfix #340 : don't set cache=none to cdrom
+  
+  * Migrate: fix check if a backing file exist  
+  
+  * vncproxy: wait max 10s for the socket if it does not exist
+  
+  * vzdump: improve error reporting
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 28 Feb 2013 06:21:30 +0100
+
+qemu-server (2.3-13) unstable; urgency=low
+
+  * set cache=none by default
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 25 Feb 2013 06:12:14 +0100
+
+qemu-server (2.3-12) unstable; urgency=low
+
+  * disable hotplug by default (revert previous change)
+  
+  * disable usb2 controller by default (revert previous change)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 22 Feb 2013 09:52:13 +0100
+
+qemu-server (2.3-11) unstable; urgency=low
+
+  * fix backup parameters for pve-qemu-kvm 1.4-4
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 20 Feb 2013 10:47:55 +0100
+
+qemu-server (2.3-10) unstable; urgency=low
+
+  * enable hotplug by default
+  
+  * enable usb2 controller by default
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 19 Feb 2013 10:45:28 +0100
+
+qemu-server (2.3-9) unstable; urgency=low
+
+  * depend on pve-qemu-kvm >= 1.4-1
+
+  * qemu 1.4 fix : rename stats-polling-interval to
+    guest-stats-polling-interval
+  
+  * remove expected_downtime from migration status (not set in qemu 1.4,
+    always 0)
+
+  * do not set cache=none for .raw files - use qemu default instead
+    (writeback)
+  
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 13 Feb 2013 10:38:13 +0100
+
+qemu-server (2.3-8) unstable; urgency=low
+
+  * fix tar restore: correctly check if VM config already exists
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 28 Jan 2013 09:53:12 +0100
+
+qemu-server (2.3-7) unstable; urgency=low
+
+  * allow to suspend/resume VM during backup
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 17 Jan 2013 10:25:17 +0100
+
+qemu-server (2.3-6) unstable; urgency=low
+
+  * fix bug #315: cancel backup before stopping the VM
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 16 Jan 2013 13:22:58 +0100
+
+qemu-server (2.3-5) unstable; urgency=low
+
+  * fix bug #307: correctly restore disk settings
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 07 Jan 2013 06:48:48 +0100
+
+qemu-server (2.3-4) unstable; urgency=low
+
+  * qmrestore vma files: when restoring to same VMID, only remove volumes
+    contained in backup - other volumes will be still available as
+    'unused' disks. Note: tar restore still removes all volumes.
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 04 Jan 2013 07:02:00 +0100
+
+qemu-server (2.3-3) unstable; urgency=low
+
+  * fix Bug #293: CDROM size not reset when set to use no media
+  
+  * set migrate_downtime default value to 0.1 (and use float instead of int)
+
+  * implement dynamic migration_downtime
+  
+  * allow manual ballooning if shares is set to zero
+  
+  * new api2 call: vm_feature (test support for snapshots/clone feature)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 02 Jan 2013 06:31:38 +0100
+
+qemu-server (2.3-2) unstable; urgency=low
+
+  * use memory info from ballon driver (if enabled)
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 18 Dec 2012 12:51:57 +0100
+
+qemu-server (2.3-1) unstable; urgency=low
+
+  * include new qemu backup feature
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 12 Dec 2012 15:14:59 +0100
+
+qemu-server (2.0-71) unstable; urgency=low
+
+  * show better error message if bridge does not exist
+  
+  * QMPClient: support fdsets
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 11 Dec 2012 11:17:47 +0100
+
+qemu-server (2.0-70) unstable; urgency=low
+
+  * fix version parser for qemu 1.3
+
+  * add new cpu types: SandyBridge Haswell Opteron_G4 Opteron_G5
+
+  * remove rhel specific cpu types: cpu64-rhel6 cpu64-rhel5
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 23 Nov 2012 07:45:19 +0100
+
+qemu-server (2.0-69) unstable; urgency=low
+
+  * fix ballon monitor command (use bytes instead of MBs)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 16 Nov 2012 06:13:46 +0100
+
+qemu-server (2.0-68) unstable; urgency=low
+
+  * vzdump: store drive in correct order (sort) to avoid confusion
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 05 Nov 2012 06:25:33 +0100
+
+qemu-server (2.0-67) unstable; urgency=low
+
+  * fix allocation size in qmrestore
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 03 Nov 2012 07:54:06 +0100
+
+qemu-server (2.0-66) unstable; urgency=low
+
+  * vzdump: restore sata drives correctly
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 02 Nov 2012 07:43:16 +0100
+
+qemu-server (2.0-65) unstable; urgency=low
+
+  * remove hardcoded blowfish cipher
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 31 Oct 2012 13:58:27 +0100
+
+qemu-server (2.0-64) unstable; urgency=low
+
+  * fix memory leak in QMP Client (many thanks to Stefan!)
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 29 Oct 2012 12:14:51 +0100
+
+qemu-server (2.0-63) unstable; urgency=low
+
+  * fix bug in vmtar 
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 25 Oct 2012 10:00:50 +0200
+
+qemu-server (2.0-62) unstable; urgency=low
+
+  * vncproxy: wait until vnc port is ready
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 24 Oct 2012 08:58:52 +0200
+
+qemu-server (2.0-61) unstable; urgency=low
+
+  * add 'win8' ostype (same defaults as win7 for now)
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 23 Oct 2012 09:35:27 +0200
+
+qemu-server (2.0-60) unstable; urgency=low
+
+  * fix bug 258:  use bridge mtu for tap interfaces
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 22 Oct 2012 12:26:42 +0200
+
+qemu-server (2.0-59) unstable; urgency=low
+
+  * disable vzdump for VM containing snapshots
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 27 Sep 2012 09:41:19 +0200
+
+qemu-server (2.0-58) unstable; urgency=low
+
+  * fix bug 251: use new command line syntax
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 26 Sep 2012 12:43:17 +0200
+
+qemu-server (2.0-57) unstable; urgency=low
+
+  * fix migrating VMs with snapshots
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 25 Sep 2012 08:12:37 +0200
+
+qemu-server (2.0-56) unstable; urgency=low
+
+  * include shanpshot support
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 24 Sep 2012 15:59:40 +0200
+
+qemu-server (2.0-55) unstable; urgency=low
+
+  * migrate: disable xbzrle (not stable)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 31 Aug 2012 11:04:35 +0200
+
+qemu-server (2.0-54) unstable; urgency=low
+
+  * use mbps instead of bps
+  
+  * try to make migrate more stable
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 30 Aug 2012 12:16:39 +0200
+
+qemu-server (2.0-53) unstable; urgency=low
+
+  * livemigrate : activate xbzrle cache
+
+  * scsihw: add megasas controller
+  
+  * partly fix bug 247: retry qmp open 
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 27 Aug 2012 13:45:18 +0200
+
+qemu-server (2.0-52) unstable; urgency=low
+
+  * fix bug 217: stop VM after failed migrate
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 23 Aug 2012 10:33:57 +0200
+
+qemu-server (2.0-51) unstable; urgency=low
+
+  * support up to 32 network devices
+  
+  * support up to 16 virtio devices
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 21 Aug 2012 10:06:39 +0200
+
+qemu-server (2.0-50) unstable; urgency=low
+
+  * implement 'qm rescan' to update disk sizes and unused disk info
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 20 Aug 2012 09:22:29 +0200
+
+qemu-server (2.0-49) unstable; urgency=low
+
+  * fix bug 242: re-add old monitor code
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 17 Aug 2012 10:33:37 +0200
+
+qemu-server (2.0-48) unstable; urgency=low
+
+  * add size hint to drive options
+  
+  * new 'qm resize' command
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 14 Aug 2012 06:55:39 +0200
+
+qemu-server (2.0-47) unstable; urgency=low
+
+  * implement virtio-scsi-pci controller
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 01 Aug 2012 08:57:52 +0200
+
+qemu-server (2.0-46) unstable; urgency=low
+
+  * bug fix: allow to set devices directly (-ide1 /dev/XYZ)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 27 Jul 2012 11:59:14 +0200
+
+qemu-server (2.0-45) unstable; urgency=low
+
+  * migrate: only scan available storages
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 16 Jul 2012 10:18:22 +0200
+
+qemu-server (2.0-44) unstable; urgency=low
+
+  * migrate: only scan necessary storage for unused volumes
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 16 Jul 2012 06:59:23 +0200
+
+qemu-server (2.0-43) unstable; urgency=low
+
+  * use new QMPClient code
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 13 Jul 2012 07:05:28 +0200
+
+qemu-server (2.0-42) unstable; urgency=low
+
+  * fix pool permission checks on create
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 30 May 2012 10:13:11 +0200
+
+qemu-server (2.0-41) unstable; urgency=low
+
+  * more fixes for newer pve-storage versions
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 24 May 2012 07:24:00 +0200
+
+qemu-server (2.0-40) unstable; urgency=low
+
+  * minor fixes for newer pve-storage versions
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 23 May 2012 07:23:31 +0200
+
+qemu-server (2.0-39) unstable; urgency=low
+
+  * new startup option to define startup order.
+  
+  * do not start VMs with /etc/init.d/qemu-server. This is now
+  done with /etc/init.d/pve-manager
+  
+  * qm: removed startall/stopall commands
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 19 Apr 2012 14:26:04 +0200
+
+qemu-server (2.0-38) unstable; urgency=low
+
+  * add directsync cache mode
+  
+  * fix bug #147: allow to set migrate_downtime to 0
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 11 Apr 2012 08:51:56 +0200
+
+qemu-server (2.0-37) unstable; urgency=low
+
+  * fix bug in storage availability check (migrate)
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 07 Apr 2012 08:25:59 +0200
+
+qemu-server (2.0-36) unstable; urgency=low
+
+  * use '-no-kvm-pit-reinjection -no-hpet' for win7 and w2k8 guests.
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 05 Apr 2012 12:34:00 +0200
+
+qemu-server (2.0-35) unstable; urgency=low
+
+  * fix bug #134: allow to pass file names to qmrestore and 'qm set'
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 02 Apr 2012 10:51:41 +0200
+
+qemu-server (2.0-34) unstable; urgency=low
+
+  * fix bug #12: check storage availability early (migrate)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 30 Mar 2012 09:12:46 +0200
+
+qemu-server (2.0-33) unstable; urgency=low
+
+  * fix bug #121: activate volumes correctly
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 29 Mar 2012 11:09:36 +0200
+
+qemu-server (2.0-32) unstable; urgency=low
+
+  * fix usb host syntax (correctly pass hexadecimal numbers with prefix
+    '0x' to kvm)
+  
+  * document rerror/werror options
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 29 Mar 2012 07:11:51 +0200
+
+qemu-server (2.0-31) unstable; urgency=low
+
+  * use new network setup code from PVE::Network (libpve-common-perl)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 28 Mar 2012 10:39:12 +0200
+
+qemu-server (2.0-30) unstable; urgency=low
+
+  * fix ha migration
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 27 Mar 2012 12:20:33 +0200
+
+qemu-server (2.0-29) unstable; urgency=low
+
+  * fix bug #97: execute 'clusvcadm' commands for HA managed VMs
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 27 Mar 2012 10:36:23 +0200
+
+qemu-server (2.0-28) unstable; urgency=low
+
+  * use Digest::SHA instead of Digest::SHA1
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 20 Mar 2012 12:24:01 +0100
+
+qemu-server (2.0-27) unstable; urgency=low
+
+  * make startall wait up to 10 seconds for quorum
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 20 Mar 2012 09:32:53 +0100
+
+qemu-server (2.0-26) unstable; urgency=low
+
+  * fix bug 109: use scsi inquiry to test if we can use the scsi-block
+    driver.
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 19 Mar 2012 10:39:30 +0100
+
+qemu-server (2.0-25) unstable; urgency=low
+
+  * fix bug 102: remove stale status file on stop
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 01 Mar 2012 12:53:32 +0100
+
+qemu-server (2.0-24) unstable; urgency=low
+
+  * save description as comment.
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 01 Mar 2012 08:12:29 +0100
+
+qemu-server (2.0-23) unstable; urgency=low
+
+  * fix lvremove call: avoid 'Not a CODE reference' warning
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 01 Mar 2012 06:36:33 +0100
+
+qemu-server (2.0-22) unstable; urgency=low
+
+  * revert tablet mice fix - does not work reliable
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 29 Feb 2012 09:45:30 +0100
+
+qemu-server (2.0-21) unstable; urgency=low
+
+  * fix tablet mice as default when live migrate
+  
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 29 Feb 2012 06:51:09 +0100
+
+qemu-server (2.0-20) unstable; urgency=low
+
+  * fix bug 96: fix vzdump on stopped vm
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 24 Feb 2012 07:38:45 +0100
+
+qemu-server (2.0-19) unstable; urgency=low
+
+  * support more CPU models
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 22 Feb 2012 07:18:53 +0100
+
+qemu-server (2.0-18) unstable; urgency=low
+
+  * fix cdrom (/dev/cdrom) permission check
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 20 Feb 2012 07:16:36 +0100
+
+qemu-server (2.0-17) unstable; urgency=low
+
+  * fix cdrom removal bug
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 15 Feb 2012 10:48:30 +0100
+
+qemu-server (2.0-16) unstable; urgency=low
+
+  * ignore -tdf (avoid kvm warning) - this is no longer needed 
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 13 Feb 2012 11:18:01 +0100
+
+qemu-server (2.0-15) unstable; urgency=low
+
+  * online migration fix: close tunnel later, wait for connection close
+  
+  * fix bug #81: do no deactivate volumes in vzdump stop mode
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 17 Jan 2012 11:24:56 +0100
+
+qemu-server (2.0-14) unstable; urgency=low
+
+  * use 'da' instead of 'dk' for Danish keyboard (qemu use that name)
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 09 Jan 2012 11:24:40 +0100
+
+qemu-server (2.0-13) unstable; urgency=low
+
+  * load vhost_net module
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 20 Dec 2011 12:25:22 +0100
+
+qemu-server (2.0-12) unstable; urgency=low
+
+  * implement forceStop option for shutdown
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 15 Dec 2011 12:58:00 +0100
+
+qemu-server (2.0-11) unstable; urgency=low
+
+  * do not use ehci by default
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 08 Dec 2011 10:26:36 +0100
+
+qemu-server (2.0-10) unstable; urgency=low
+
+  * set qm exit codes currectly
+  
+  * fix 'qm shutdown <vmid>'
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 30 Nov 2011 09:35:43 +0100
+
+qemu-server (2.0-9) unstable; urgency=low
+
+  * fix 'qm stopall'
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 29 Nov 2011 11:14:01 +0100
+
+qemu-server (2.0-8) unstable; urgency=low
+
+  * be more careful when removing snapshots
+  
+  * do not call check_lock() for sendkey
+  
+  * try to detect errors before starting the background task
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 29 Nov 2011 08:08:44 +0100
+
+qemu-server (2.0-7) unstable; urgency=low
+
+  * activate/deactivate LVs more carefully
+  
+  * avoid syslog whenever possible
+  
+  * code cleanups
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 25 Nov 2011 08:08:04 +0100
+
+qemu-server (2.0-6) unstable; urgency=low
+
+  * set correct migrate speed
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 23 Nov 2011 09:12:12 +0100
+
+qemu-server (2.0-5) unstable; urgency=low
+
+  * fix vzdump stop mode
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 21 Nov 2011 06:38:03 +0100
+
+qemu-server (2.0-4) unstable; urgency=low
+
+  * bump version
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 19 Nov 2011 09:54:19 +0100
+
+qemu-server (2.0-3) unstable; urgency=low
+
+  * implement monitor API
+  
+  * implement qmrestore
+
+  * fix vzdump plugin for 2.0
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 09 Nov 2011 11:35:58 +0100
+
+qemu-server (2.0-2) unstable; urgency=low
+
+  * cleanups
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 05 Oct 2011 10:15:37 +0200
+
+qemu-server (2.0-1) unstable; urgency=low
+
+  * see Changelog for details
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 26 Aug 2010 13:48:12 +0200
+
+qemu-server (1.1-18) unstable; urgency=low
+
+  * small bug fix im qmigrate
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 20 Aug 2010 08:05:21 +0200
+
+qemu-server (1.1-17) unstable; urgency=low
+
+  * carefully catch write errors
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 19 Jul 2010 09:00:48 +0200
+
+qemu-server (1.1-16) unstable; urgency=low
+
+  * add rerror/werror options (patch from l.mierzwa)
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 29 Jun 2010 08:49:00 +0200
+
+qemu-server (1.1-15) unstable; urgency=low
+
+  * fix vmtar bug (endless growing archive)
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 25 Jun 2010 12:22:17 +0200
+
+qemu-server (1.1-14) unstable; urgency=low
+
+  *  correct order of config option (prevent virtio reordering)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 28 Apr 2010 09:05:15 +0200
+
+qemu-server (1.1-13) unstable; urgency=low
+
+  * allow vlan1-to vlan4094 (Since 802.1q allows VLAN identifiers up to 4094).
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 21 Apr 2010 10:19:37 +0200
+
+qemu-server (1.1-12) unstable; urgency=low
+
+  * minor fixes for new qemu-kvm 0.12.3
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 16 Apr 2010 12:01:17 +0200
+
+qemu-server (1.1-11) unstable; urgency=low
+
+  * experimental support for pci pass-through (option 'hostpci')
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 08 Jan 2010 13:03:44 +0100
+
+qemu-server (1.1-10) unstable; urgency=low
+
+  * add compatibility code for older kvm versions (0.9)
+  
+  * only use fairsched when the kernel has openvz support
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 04 Dec 2009 15:17:18 +0100
+
+qemu-server (1.1-9) unstable; urgency=low
+
+  * always display boot menu (Press F12...)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 28 Oct 2009 10:28:23 +0100
+
+qemu-server (1.1-8) unstable; urgency=low
+
+  * fix 'stopall' timeout
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 23 Oct 2009 12:55:23 +0200
+
+qemu-server (1.1-7) unstable; urgency=low
+
+  * do not set fairsched --id when using virtio
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 22 Oct 2009 11:57:57 +0200
+
+qemu-server (1.1-6) unstable; urgency=low
+
+  * disable fairsched when option 'cpuunits' is set to 0 (zero)
+
+  * disable fairsched when the VM uses virtio devices.
+  
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 15 Oct 2009 15:06:48 +0200
+
+qemu-server (1.1-5) unstable; urgency=low
+
+  * suppress syslog when setting migrate downtime/speed
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 06 Oct 2009 10:10:55 +0200
+
+qemu-server (1.1-4) unstable; urgency=low
+
+  * depend on stable pve-qemu-kvm
+
+  * new migrate_speed and migrate_downtime settings
+  
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 28 Sep 2009 11:18:08 +0200
+
+qemu-server (1.1-3) unstable; urgency=low
+
+  * support up to 1000 vlans
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 18 Sep 2009 09:54:35 +0200
+
+qemu-server (1.1-2) unstable; urgency=low
+
+  * introduce new 'sockets' and 'cores' settings
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 18 Sep 2009 09:54:18 +0200
+
+qemu-server (1.1-1) unstable; urgency=low
+
+  * use new pve-storage framework
+  
+  * delete unused disk on destroy
+
+  * fix cache= option (none|writethrough|writeback)
+
+  * use rtc-td-hack for windows when acpi is enabled
+  
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 25 Jun 2009 08:49:53 +0200
+
+qemu-server (1.0-14) unstable; urgency=low
+
+  * add new tablet option (to disable --usbdevice tablet, which generate
+    many interrupts, which is bad when you run many VMs) (Patch was
+    provided by Tomasz Chmielewski)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 27 May 2009 12:50:45 +0200
+
+qemu-server (1.0-13) unstable; urgency=low
+
+  * Conflict with netcat-openbsd
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 13 May 2009 10:20:54 +0200
+
+qemu-server (1.0-12) unstable; urgency=low
+
+  * fixes for debian lenny
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 21 Apr 2009 14:28:42 +0200
+
+qemu-server (1.0-11) unstable; urgency=low
+
+  *  allow white spaces inside args - use normal shell quoting
+  
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 26 Feb 2009 11:31:36 +0100
+
+qemu-server (1.0-10) unstable; urgency=low
+
+  * add 'args' option
+
+  * bug fix for 'lost description'
+  
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 11 Feb 2009 08:18:29 +0100
+
+qemu-server (1.0-9) unstable; urgency=low
+
+  * add 'parallel' option
+  
+  * add 'startdate' option
+  
+  * fix manual page
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon,  2 Feb 2009 08:53:26 +0100
+
+qemu-server (1.0-8) unstable; urgency=low
+
+  * add 'serial' option
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 20 Jan 2009 08:52:24 +0100
+
+qemu-server (1.0-7) unstable; urgency=low
+
+  * use new systax for kvm vga option (needed for kvm newer than kvm77)
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed,  7 Jan 2009 14:46:09 +0100
+
+qemu-server (1.0-6) unstable; urgency=low
+
+  * use predefined names for tap devices
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 19 Dec 2008 13:00:44 +0100
+
+qemu-server (1.0-5) unstable; urgency=low
+
+  * added host usb device support
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 17 Nov 2008 11:26:04 +0100
+
+qemu-server (1.0-4) unstable; urgency=low
+
+  * fix status problem
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 13 Nov 2008 13:13:43 +0100
+
+qemu-server (1.0-3) unstable; urgency=low
+
+  * small bug fixes
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 11 Nov 2008 08:29:23 +0100
+
+qemu-server (1.0-1) unstable; urgency=low
+
+  * update for kvm-75, support vm migration
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 22 Oct 2008 11:04:03 +0200
+
+qemu-server (0.9) unstable; urgency=low
+
+  * initial release
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon,  4 Feb 2008 09:10:13 +0100
+
